@@ -36,6 +36,10 @@ client.on('ready', c => {
             'togglecommand',
         ],
         botOwners: owners
+        events: {
+            dir: path.join(__dirname, 'events'),
+        },
+        botOwners: owners
     });
     process.on('unhandledRejection', error => {
         console.error('Unhandled promise rejection: ', error);

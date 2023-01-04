@@ -1,6 +1,6 @@
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
-const { token } = require('./config.json');
+const { token, roleMessage, owners } = require('./config.json');
 const WOK = require('wokcommands');
 const path = require('path');
 const fetch = require('node-fetch');
@@ -35,7 +35,7 @@ client.on('ready', c => {
             'requiredroles',
             'togglecommand',
         ],
-        botOwners: ['734971051037032569']
+        botOwners: owners
     });
     process.on('unhandledRejection', error => {
         console.error('Unhandled promise rejection: ', error);
@@ -44,7 +44,7 @@ client.on('ready', c => {
         activities: [{ name: 'with your emotions' }],
         status: 'online',
     });
-    client.channels.cache.get('1053552629373997156').messages.fetch('1053552805882908722');
+    client.channels.cache.get(roleMessage.channel).messages.fetch(roleMessage.message);
 });
 
 // Log in to Discord with your client's token

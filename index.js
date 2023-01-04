@@ -44,6 +44,7 @@ client.on('ready', c => {
         activities: [{ name: 'with your emotions' }],
         status: 'online',
     });
+    client.channels.cache.get('1053552629373997156').messages.fetch('1053552805882908722');
 });
 
 // Log in to Discord with your client's token

@@ -1,5 +1,5 @@
 module.exports = (message) => {
-    if ((message.content.includes('when') || message.content.includes('soon')) &&
+    if ((message.content.toLowerCase().includes('when') || message.content.includes('soon')) &&
         (message.content.includes('exam') ||
             message.content.includes('score') ||
             message.content.includes('grade') ||

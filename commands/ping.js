@@ -2,12 +2,9 @@ const { CommandType } = require("wokcommands");
 
 module.exports = {
     // Required for slash commands
-    description: "Ping pong command",
-
+    description: "Ping",
     // Create a legacy and slash command
     type: CommandType.BOTH,
-
-    // Invoked when a user runs the ping command
     callback: () => {
         // Return the same object you would use in
         // message.reply
@@ -18,5 +15,5 @@ module.exports = {
         return {
             content: "Pong!",
         }
-    },
+    }
 }

@@ -12,6 +12,7 @@ client.once(Events.ClientReady, c => {
     c.guilds.fetch('927674403825790976').then(g => { //g is a guild
         g.channels.fetch('1053546509288870008').then(ch => { //ch is a channel
             ch.send(`<:secretemote:1054767344108437595>`);
+            ch.send("A-Bot is online!")
         })
     })
 });

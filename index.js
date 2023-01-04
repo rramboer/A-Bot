@@ -35,6 +35,9 @@ client.on('ready', c => {
             'requiredroles',
             'togglecommand',
         ],
+        events: {
+            dir: path.join(__dirname, 'events'),
+        },
         botOwners: ['734971051037032569']
     });
     process.on('unhandledRejection', error => {

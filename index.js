@@ -1,20 +1,49 @@
 // Require the necessary discord.js classes
-const { Client, Events, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { token } = require('./config.json');
+const WOK = require('wokcommands');
+const path = require('path');
+const fetch = require('node-fetch');
 
-// Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+process.on("SIGINT", () => process.exit(0));
+process.on("SIGTERM", () => process.exit(0));
+
+// Create a client instance
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMembers
+    ],
+    partials: [Partials.Channel],
+});
 
 // When the client is ready, run this code (only once)
-// We use 'c' for the event parameter to keep it separate from the already defined 'client'
-client.once(Events.ClientReady, c => {
+client.on('ready', c => {
     console.log(`Ready! Logged in as ${c.user.tag}`);
-    c.guilds.fetch('927674403825790976').then(g => { //g is a guild
-        g.channels.fetch('1053546509288870008').then(ch => { //ch is a channel
-            ch.send(`<:secretemote:1054767344108437595>`);
-            ch.send("A-Bot is online!")
-        })
-    })
+    new WOK({
+        client,
+        commandsDir: path.join(__dirname, 'commands'),
+        disabledDefaultCommands: [
+            'channelcommand',
+            'customcommand',
+            'delcustomcommand',
+            'prefix',
+            'requiredpermissions',
+            'requiredroles',
+            'togglecommand',
+        ],
+        botOwners: ['734971051037032569']
+    });
+    process.on('unhandledRejection', error => {
+        console.error('Unhandled promise rejection: ', error);
+    });
+    client.user.setPresence({
+        activities: [{ name: 'with your emotions' }],
+        status: 'online',
+    });
 });
 
 // Log in to Discord with your client's token

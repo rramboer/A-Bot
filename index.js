@@ -5,6 +5,11 @@ const WOK = require('wokcommands');
 const path = require('path');
 const fetch = require('node-fetch');
 
+const studentRole = '1053544751439290448'; // Student role
+const studentAlumRole = '927680207505211443'; // Student Alumni role
+exports.studentRole = studentRole;
+exports.studentAlumRole = studentAlumRole;
+
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
 

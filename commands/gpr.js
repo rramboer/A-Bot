@@ -5,6 +5,9 @@ module.exports = {
     description: "Grass privileges revoked",
     // Create a legacy and slash command
     type: CommandType.BOTH,
+    minArgs: 1,
+    maxArgs: 1,
+    testOnly: false,
     callback: () => {
         return {
             content: "https://tenor.com/view/grass-privileges-meme-touch-touch-grass-gif-26525632",

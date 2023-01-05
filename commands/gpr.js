@@ -5,8 +5,8 @@ module.exports = {
     description: "Grass privileges revoked",
     // Create a legacy and slash command
     type: CommandType.BOTH,
-    minArgs: 1,
-    maxArgs: 1,
+    minArgs: 0,
+    maxArgs: 0,
     testOnly: false,
     callback: () => {
         return {

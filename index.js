@@ -4,9 +4,9 @@ const { token, owners, roleMessage } = require('./config.json');
 const WOK = require('wokcommands');
 const path = require('path');
 const fetch = require('node-fetch');
-const fetchTest = require('./db');
+const {mongoClient, fetchTest} = require('./db');
 
-fetchTest();
+fetchTest(mongoClient);
 
 reactionRoleChannel = roleMessage.channel;
 reactionRoleMessage = roleMessage.message;

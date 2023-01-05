@@ -10,14 +10,14 @@ const mongoClient = new MongoClient(MONGODB_URI);
 module.exports = {
     MONGODB_URI: MONGODB_URI,
     mongoClient: mongoClient,
-    fetchTest: async () => {
+    fetchTest: async (m_client) => {
         console.log("test");               
-        await listDatabases(mongoClient);
+        await listDatabases(m_client);
 
         try {
             await mongoClient.connect();
 
-            await listDatabases(mongoClient);
+            await listDatabases(m_client);
         } catch(e) {
             console.log(e);
         }

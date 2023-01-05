@@ -8,8 +8,6 @@ const { MongoClient, MongoDB } = require('mongodb')
 // const mongoClient = new MongoClient(MONGODB_URI);
 
 module.exports = {
-    MONGODB_URI: MONGODB_URI,
-    mongoClient: mongoClient,
     fetchTest: async (m_client) => {
         console.log("test");               
         await listDatabases(m_client);
@@ -26,6 +24,7 @@ module.exports = {
 }
 
 async function listDatabases(client){
+    console.log("attempting to list database");
     databasesList = await client.db().admin().listDatabases();
  
     console.log("Databases:");

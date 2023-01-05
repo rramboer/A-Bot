@@ -1,22 +1,18 @@
-// root
-require('dotenv').config();
-console.log(process.env) // remove this after you've confirmed it is working
+
 const { MongoClient, MongoDB } = require('mongodb')
-const MONGODB_URI = process.env.MONGODB_URI;
-console.log(process.env.S3_BUCKET);
+const { mongoURI, token, owners, roleMessage } = require('./config.json');
+const MONGODB_URI = mongoURI
 const mongoClient = new MongoClient(MONGODB_URI);
 
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
-const { token, owners, roleMessage } = require('./config.json');
 const WOK = require('wokcommands');
 const path = require('path');
 const fetch = require('node-fetch');
 const {fetchTest} = require('./db');
-fetchTest(mongoClient);
-
 
 fetchTest(mongoClient);
+
 
 reactionRoleChannel = roleMessage.channel;
 reactionRoleMessage = roleMessage.message;

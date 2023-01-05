@@ -32,7 +32,7 @@ const client = new Client({
 
 // When the client is ready, run this code (only once)
 client.on('ready', c => {
-    console.log(`Ready! Logged in as ${c.user.tag}`);
+    console.log(`Bot is online! Logged in as ${c.user.tag}`);
     new WOK({
         client,
         commandsDir: path.join(__dirname, 'commands'),

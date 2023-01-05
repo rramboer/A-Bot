@@ -1,5 +1,7 @@
+const { reactionRoleMessage, studentAlumRole, studentRole } = require("../..");
+
 module.exports = async (reaction, user) => {
-    if (reaction.message.id === roleMessage.message) {
+    if (reaction.message.id === reactionRoleMessage) {
         const { guild } = reaction.message;
         await guild.members.fetch(user.id).then(async member => {
             // Reacting to one role should remove the other

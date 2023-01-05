@@ -4,7 +4,7 @@ const { token, owners, roleMessage } = require('./config.json');
 const WOK = require('wokcommands');
 const path = require('path');
 const fetch = require('node-fetch');
-const fetchData = require('./db');
+const fetchTest = require('./db');
 
 reactionRoleChannel = roleMessage.channel;
 reactionRoleMessage = roleMessage.message;

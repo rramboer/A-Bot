@@ -1,4 +1,4 @@
-const { MongoDB } = require('mongodb')
+const { MongoClient, MongoDB } = require('mongodb')
 const { dotenv } = require('dotenv');
 
 // export const MONGODB_URI = process.env.MONGODB_URI; // retrieves connection string uri from environment variables 😁
@@ -22,3 +22,11 @@ module.exports = {
 
     },
 }
+
+async function listDatabases(client){
+    databasesList = await client.db().admin().listDatabases();
+ 
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+};
+ 

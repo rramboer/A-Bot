@@ -13,7 +13,6 @@ module.exports = {
             required: true,
             type: 3,
         }
-        // Add an optional archive argument (adds ARCHIVED after category name and disables new messages)
     ],
     expectedArgs: "<[F/S/W][Last two digits of year]>",
     testOnly: false,

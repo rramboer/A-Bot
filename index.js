@@ -54,7 +54,7 @@ client.on('ready', c => {
         console.error('Unhandled promise rejection: ', error);
     });
     client.user.setPresence({
-        activities: [{ name: 'with your emotions' }],
+        activities: [{ name: 'with your emotions' }, { name: 'v1.0.0' }],
         status: 'online',
     });
     client.channels.cache.get(roleMessage.channel).messages.fetch(roleMessage.message);

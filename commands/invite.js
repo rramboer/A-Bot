@@ -20,7 +20,7 @@ module.exports = {
         if (!args[0]) {
             msgInt.reply('discord.gg/rmQp6PSng9');
         } else {
-            guild.invites.create('734492640757678083', { maxUses: parseInt(args[0]), maxAge: 0 }).then(i => {
+            guild.invites.create('1053552629373997156', { maxUses: parseInt(args[0]), maxAge: 0 }).then(i => {
                 msgInt.reply(`discord.gg/${i.code}`);
             });
         }

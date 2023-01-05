@@ -6,6 +6,8 @@ const path = require('path');
 const fetch = require('node-fetch');
 const fetchTest = require('./db');
 
+fetchTest();
+
 reactionRoleChannel = roleMessage.channel;
 reactionRoleMessage = roleMessage.message;
 

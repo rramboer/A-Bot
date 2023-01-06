@@ -23,6 +23,8 @@ exports.studentRole = studentRole;
 exports.studentAlumRole = studentAlumRole;
 exports.reactionRoleChannel = reactionRoleChannel;
 exports.reactionRoleMessage = reactionRoleMessage;
+exports.mongoClient = mongoClient;
+
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));

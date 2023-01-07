@@ -38,7 +38,7 @@ module.exports = {
             if (error) {
                 console.error(error);
             } else {
-                console.log(`User: ${user.username} added to database.`)
+                console.log(`User ${user.username} added to database.`)
             }
         }
         );

@@ -38,7 +38,7 @@ module.exports = {
     // Create a legacy and slash command
     type: CommandType.BOTH,
     cooldowns: {
-        type:CooldownTypes.perUser,
+        type: CooldownTypes.perUser,
         duration: "5 m"
     },
     // setup args
@@ -67,10 +67,10 @@ module.exports = {
                     content: "You can't bet an amount less than zero. Sorry! I don't make the rules."
                 }
             }
-            if(betAmount == NaN) {
-                return { content: "Inappropriate"}
+            if (betAmount == NaN) {
+                return { content: "Inappropriate" }
             }
-            if(betAmount > _user.coins) {
+            if (betAmount > _user.coins) {
                 return {
                     content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?"
                 }
@@ -112,7 +112,7 @@ module.exports = {
 
             }
             return {
-                content: "Rolling the dice with a very ambitious bet of " + betAmount + " coins...🎲"
+                content: `${user.username} wagered ${betAmount} coins and rolled the dice... 🎲`
             }
 
         } catch (e) {

@@ -9,7 +9,7 @@ module.exports = {
     callback: async ({ user }) => {
         try {
             let db = await mongoClient.db('botCasino');
-            console.log(`User: ${user.username} is attempting to claim bonus.`);
+            console.log(`User ${user.username} is attempting to claim bonus.`);
             let _user = await db.collection('users').findOne(
                 {
                     user_id: user.id,

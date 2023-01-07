@@ -25,7 +25,7 @@ module.exports = {
     type: CommandType.BOTH,
     cooldowns: {
         errorMessage: "Please wait {TIME} before playing again. Sorry about that!",
-        type:CooldownTypes.perUser,
+        type: CooldownTypes.perUser,
         duration: "5 m"
     },
     // setup args
@@ -34,7 +34,7 @@ module.exports = {
     maxArgs: 1,
     aliases: ["rps"],
     correctSyntax: "To run the command, specify the amount of your bet. Must be an integer value.",
-    callback: async ({ user, args}) => {
+    callback: async ({ user, args }) => {
         try {
             let db = await mongoClient.db('botCasino');
             let _user = await db.collection('users').findOne(
@@ -54,10 +54,10 @@ module.exports = {
                     content: "You can't bet an amount less than zero. Sorry! I don't make the rules."
                 }
             }
-            if(betAmount == NaN) {
-                return { content: "Inappropriate"}
+            if (betAmount == NaN) {
+                return { content: "Inappropriate" }
             }
-            if(betAmount > _user.coins) {
+            if (betAmount > _user.coins) {
                 return {
                     content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?"
                 }
@@ -69,41 +69,41 @@ module.exports = {
                         type: 1,
                         components: [
                             {
-                                type:2,
-                                label:"🪨",
-                                style:4,
-                                custom_id:{
-                                    type:"rock",
-                                    amt:betAmount
+                                type: 2,
+                                label: "🪨",
+                                style: 4,
+                                custom_id: {
+                                    type: "rock",
+                                    amt: betAmount
                                 },
-                                user:user.id,
+                                user: user.id,
                             },
                             {
-                                type:2,
-                                label:"📃",
-                                style:3,
-                                custom_id:{
-                                    type:"paper",
-                                    amt:betAmount
+                                type: 2,
+                                label: "📃",
+                                style: 3,
+                                custom_id: {
+                                    type: "paper",
+                                    amt: betAmount
                                 },
-                                user:user.id,
+                                user: user.id,
                             },
                             {
-                                type:2,
-                                label:"✂️",
-                                style:1,
-                                custom_id:{
-                                    type:"scissors",
-                                    amt:betAmount
+                                type: 2,
+                                label: "✂️",
+                                style: 1,
+                                custom_id: {
+                                    type: "scissors",
+                                    amt: betAmount
                                 },
-                                play_type:"scissors",
-                                user:user.id,
+                                play_type: "scissors",
+                                user: user.id,
                             },
                         ]
                     }
                 ]
             }
-            
+
 
         } catch (e) {
             console.error(e);

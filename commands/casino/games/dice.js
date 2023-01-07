@@ -111,6 +111,7 @@ module.exports = {
                 }), 6000, db, client, channel, user, betAmount);
 
             }
+            console.log(`User ${user.username} wagered ${betAmount} coins in dice.`);
             return {
                 content: `${user.username} wagered ${betAmount} coins and rolled the dice... 🎲`
             }

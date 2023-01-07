@@ -22,7 +22,7 @@ module.exports = {
     ],
     expectedArgs: "<message link> <reply text>",
     testOnly: false,
-    callback: async ({ guild, args, interaction: msgInt }) => {
+    callback: async ({ user, guild, args, interaction: msgInt }) => {
         let IDs = args[0].split('/');
         // https://discord.com/channels/734492640216744017/926625772595191859/926654292524404817
         // args[0][1]  [2]       [3]            [4]               [5]                [6]
@@ -32,7 +32,10 @@ module.exports = {
         }
         guild.channels.fetch(IDs[5]).then(c => { //Extract channel and ignore guild part of link
             c.messages.fetch(IDs[6]).then(async m => { //Extract message from channel
-                await m.reply(args[1]).then(() => { msgInt.reply(`Replied to ${m.url}`); })
+                await m.reply(args[1]).then(() => {
+                    msgInt.reply(`Replied to ${m.url}`);
+                    console.log(`User ${user.username} made the bot reply to ${m.url}`);
+                })
                     .catch(() => { msgInt.reply(`Unable to reply to message.`); return; });
             })
                 .catch(() => { msgInt.reply(`Unable to find message. Please verify that the message link is valid.`); });

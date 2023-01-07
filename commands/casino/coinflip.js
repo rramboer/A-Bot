@@ -25,7 +25,7 @@ module.exports = {
     type: CommandType.BOTH,
     cooldowns: {
         errorMessage: "Please wait {time} before playing again. Sorry about that!",
-        type:CooldownTypes.perUser,
+        type: CooldownTypes.perUser,
         duration: "5 m"
     },
     // setup args
@@ -45,7 +45,7 @@ module.exports = {
                     user_id: user.id,
                 }
             );
-            console.log(`User ${user.username} is playing rock paper scissors.`);
+            console.log(`User ${user.username} flipped a coin.`);
             if (_user == undefined || _user == null || _user == NaN) {
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"

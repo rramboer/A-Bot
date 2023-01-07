@@ -1,6 +1,7 @@
 const { CommandType, CooldownTypes } = require("wokcommands");
 const { mongoClient } = require("../../..");
 const { ApplicationCommandOption, ApplicationCommandOptionType } = require('discord.js');
+const { cannotHaveAUsernamePasswordPort } = require("whatwg-url");
 
 /**
  * @param player user input, 1 = rock, 2 = paper, 3 = scissors
@@ -62,6 +63,7 @@ module.exports = {
                     content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?"
                 }
             }
+            console.log(`User ${user.username} is playing rock paper scissors and bet ${betAmount} coins.`);
             return {
                 content: "Time for some old-fashioned roshambo! Rock, paper, or scissors? Pick one!",
                 components: [
@@ -94,8 +96,6 @@ module.exports = {
                     }
                 ]
             }
-
-
         } catch (e) {
             console.error(e);
             return {

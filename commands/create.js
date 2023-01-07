@@ -16,7 +16,7 @@ module.exports = {
     ],
     expectedArgs: "<[F/S/W][Last two digits of year]>",
     testOnly: false,
-    callback: async ({ guild, text, interaction: msgInt }) => {
+    callback: async ({ user, guild, text, interaction: msgInt }) => {
         const semesters = {
             f: 'Fall',
             s: 'Spring/Summer',
@@ -38,6 +38,7 @@ module.exports = {
                     .catch(() => { msgInt.reply("Unable to create category"); return; });
             }
             msgInt.reply(`${categoryName} successfully created`);
+            console.log(`User ${user.username} created ${categoryName} category.`);
         } else {
             msgInt.reply('Invalid semester format');
         }

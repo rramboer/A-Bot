@@ -30,14 +30,14 @@ module.exports = {
                     content: "😳 Oops! I deleted all of your coins lol (not a joke). Must've been a bit flip..."
                 }
             }
-            console.log(`User ${user.username} is checking their balance.`);
             let coins = _user.coins;
+            console.log(`User ${user.username} is checking their balance and has ${coins} coins.`);
             return {
                 content: user.username + " has " + coins + " coins!",
             }
         } catch {
             return {
-                content: "🤕 Uh oh! There was an error. Try again lol"
+                content: "🤕 Uh oh! There was an error. Try again."
             }
         }
     }

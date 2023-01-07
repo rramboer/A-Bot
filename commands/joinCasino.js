@@ -35,13 +35,10 @@ module.exports = {
             bonusAvailable: true,
             working: false
         }, (error) => {
-            if (error) {
-                console.error(error);
-            } else {
-                console.log(`User ${user.username} added to database.`)
-            }
+            console.error(error);
         }
         );
+        console.log(`User ${user.username} added to database.`)
         return {
             content: `Welcome to the casino, ${user.username}! You have nothing to your name. Claim a starting bonus with \`/bonus\`, and start earning an income with \`/work\`. Have fun! 🥳`,
         }

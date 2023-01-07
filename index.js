@@ -1,9 +1,17 @@
+
+const { MongoClient, MongoDB } = require('mongodb')
+const { mongoURI, token, owners, roleMessage } = require('./config.json');
+const MONGODB_URI = mongoURI
+const mongoClient = new MongoClient(MONGODB_URI);
+
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
-const { token, owners, roleMessage } = require('./config.json');
 const WOK = require('wokcommands');
 const path = require('path');
 const fetch = require('node-fetch');
+const { fetchTest } = require('./db');
+
+fetchTest(mongoClient);
 
 reactionRoleChannel = roleMessage.channel;
 reactionRoleMessage = roleMessage.message;
@@ -14,6 +22,7 @@ exports.studentRole = studentRole;
 exports.studentAlumRole = studentAlumRole;
 exports.reactionRoleChannel = reactionRoleChannel;
 exports.reactionRoleMessage = reactionRoleMessage;
+exports.mongoClient = mongoClient;
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
@@ -29,10 +38,10 @@ const client = new Client({
     ],
     partials: [Partials.Channel],
 });
-
+exports.discordClient = client;
 // When the client is ready, run this code (only once)
 client.on('ready', c => {
-    console.log(`Bot is online! Logged in as ${c.user.tag}`);
+    console.log(`Bot is online! Logged in as ${c.user.username}`);
     new WOK({
         client,
         commandsDir: path.join(__dirname, 'commands'),
@@ -54,7 +63,7 @@ client.on('ready', c => {
         console.error('Unhandled promise rejection: ', error);
     });
     client.user.setPresence({
-        activities: [{ name: 'v1.0' }],
+        activities: [{ name: 'Casino Grand Opening - v1.5' }],
         status: 'online',
     });
     client.channels.cache.get(roleMessage.channel).messages.fetch(roleMessage.message);

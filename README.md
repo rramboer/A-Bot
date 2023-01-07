@@ -19,7 +19,7 @@ __General Use__<br>
 
 __EECS370__<br>
 `/piazza` *DMs user with link to class piazza*<br>
-`/piazza <number>` *Generates and posts link to piazza post with given number*
+`/piazza <number>` *Generates and posts link to piazza post with given number*<br>
 `/eecs370` *Sends link to eecs370.github.io*
 
 __Administration__<br>

@@ -63,7 +63,7 @@ client.on('ready', c => {
         console.error('Unhandled promise rejection: ', error);
     });
     client.user.setPresence({
-        activities: [{ name: 'Casino Grand Opening - v1.5' }],
+        activities: [{ name: 'Casino Grand Opening - v1.6' }],
         status: 'online',
     });
     client.channels.cache.get(roleMessage.channel).messages.fetch(roleMessage.message);

@@ -1,4 +1,4 @@
-const { CommandType } = require("wokcommands");
+const { CommandType, CooldownTypes } = require("wokcommands");
 const { mongoClient } = require("../..");
 
 module.exports = {
@@ -6,6 +6,11 @@ module.exports = {
     description: "Go to work! Make some money.",
     // Create a legacy and slash command
     type: CommandType.BOTH,
+    cooldowns: {
+        errorMessage: "You are already working. Please wait {TIME}.",
+        type:CooldownTypes.perUser,
+        duration: "1 h"
+    },
     callback: async ({user}) => {
         try {
             let db = await mongoClient.db('botCasino');

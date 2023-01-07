@@ -1,4 +1,4 @@
-const { CommandType } = require("wokcommands");
+const { CommandType, CooldownTypes } = require("wokcommands");
 const { mongoClient } = require("../../..");
 const { discordClient } = require('../../../index');
 const { ApplicationCommandOption, ApplicationCommandOptionType, channelLink, Application } = require('discord.js');

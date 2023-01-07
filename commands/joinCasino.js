@@ -43,7 +43,7 @@ module.exports = {
         }
         );
         return {
-            content: `Welcome to the casino, ${user.username}! You have nothing to your name. Claim a starting bonus with ` / bonus`, and start earning an income with ` / work`. Have fun! 🥳`,
+            content: `Welcome to the casino, ${user.username}! You have nothing to your name. Claim a starting bonus with \`/bonus\`, and start earning an income with \`/work\`. Have fun! 🥳`,
         }
     }
 }

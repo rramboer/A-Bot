@@ -35,7 +35,7 @@ const jobs = [
     { name: "EECS 281 IA", earnings: 250 },
     { name: "Starbucks Barista", earnings: 225 },
     { name: "EECS 370 IA", earnings: 200 },
-    { name: "Campus Police", earnings: 175 },
+    { name: "Campus Police Officer", earnings: 175 },
     { name: "Comedian", earnings: 150 },
     { name: "TikTok Influencer", earnings: 125 },
     { name: "Walmart Greeter", earnings: 100 },

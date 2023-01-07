@@ -77,8 +77,8 @@ module.exports = {
             }
             let player = [getRandomRoll(), getRandomRoll()],
                 opp = [getRandomRoll(), getRandomRoll()];
-            console.log("player rolls = " + player[0] + "," + player[1]);
-            console.log("opp rolls = " + opp[0] + "," + opp[1]);
+            //console.log("player rolls = " + player[0] + "," + player[1]);
+            //console.log("opp rolls = " + opp[0] + "," + opp[1]);
             setTimeout(((client, p) => { client.channels.cache.get(channel.id).send("You rolled a " + p[0] + " and " + p[1] + ".") }), 1500, client, player);
             setTimeout(((client, p) => { client.channels.cache.get(channel.id).send("Your opponent rolled " + p[0] + " and " + p[1] + ".") }), 4000, client, opp);
             if ((player[0] + player[1]) > (opp[0] + opp[1])) {

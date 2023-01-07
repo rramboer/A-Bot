@@ -1,4 +1,4 @@
-const { CommandType } = require("wokcommands");
+const { CommandType, CooldownTypes } = require("wokcommands");
 const { mongoClient } = require("../../..");
 const { ApplicationCommandOption, ApplicationCommandOptionType } = require('discord.js');
 
@@ -23,6 +23,10 @@ module.exports = {
     description: "Play rock paper scissors! Win your bet amount by beating your opponent.",
     // Create a legacy and slash command
     type: CommandType.BOTH,
+    cooldowns: {
+        type:CooldownTypes.perUser,
+        duration: "5 m"
+    }
     // setup args
     expectedArgs: "<bet>",
     minArgs: 1,
@@ -31,6 +35,9 @@ module.exports = {
     correctSyntax: "To run the command, specify the amount of your bet. Must be an integer value.",
     callback: async ({ user }) => {
         try {
+            return {
+                content: "this doesn't do anything sorry my bad 😂"
+            }
             let db = await mongoClient.db('botCasino');
             let _user = await db.collection('users').findOne(
                 {

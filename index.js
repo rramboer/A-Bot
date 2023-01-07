@@ -11,7 +11,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const { fetchTest } = require('./db');
 
-fetchTest(mongoClient);
+//fetchTest(mongoClient);
 
 reactionRoleChannel = roleMessage.channel;
 reactionRoleMessage = roleMessage.message;

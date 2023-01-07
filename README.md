@@ -2,7 +2,7 @@
 ### Overview
 A-Bot is a simple discord bot
 
-__Features__
+__Features__<br>
 A-Bot features a number of features that are quite unique! These include:
 &nbsp;&nbsp;&nbsp;• Server management
 &nbsp;&nbsp;&nbsp;• BotCasino and other entertainment features

@@ -9,7 +9,7 @@ module.exports = {
     callback: async ({ user }) => {
         // databasesList = await mongoClient.db().admin().listDatabases();
         let db = await mongoClient.db('botCasino');
-        console.log(db);
+        //console.log(db);
         let users = await db.collections('users');
         let _user = await db.collection('users').findOne(
             {

@@ -13,7 +13,7 @@ A-Bot runs using a MongoDB database and can be hosted however you like. To set i
 
 ### Commands List
 
-See commands listed below. Lines highlighted orange are unfinished and not functional.
+See commands listed below. A-Bot is a work-in-progress, so some features may not be functional or available yet.
 
 __General Use__<br>
 `/help` *prints this list*

@@ -1,4 +1,6 @@
-<img src="https://github.com/rramboer/A-Bot/blob/master/meta/background.png?raw=true">
+<img src="https://github.com/rramboer/A-Bot/blob/master/meta/background.png?raw=true"><br>
+<br>
+
 ## A-Bot <br>
 ### Overview <br>
 A-Bot is a simple discord bot built with the EECS370 discord server in mind. Based on [zombbblob (github)](https://github.com/ToafdaLoaf/zombbblob)

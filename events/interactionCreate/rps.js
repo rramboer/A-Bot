@@ -9,7 +9,7 @@ function getRandomSelection() {
 module.exports = async (interaction, user) => {
     //console.log("Event triggered");
     if (interaction.isButton()) {
-        console.log("Interaction event triggered. " + "custom_id==" + interaction.customId + ", user==" + interaction.user + ", betAmt==" + interaction.betAmount);
+        //console.log("Interaction event triggered. " + "custom_id==" + interaction.customId + ", user==" + interaction.user + ", betAmt==" + interaction.betAmount);
         let db = await mongoClient.db('botCasino');
         let _user = await db.collection('users').findOne(
             {

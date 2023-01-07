@@ -1,4 +1,4 @@
-<img src="https://github.com/rramboer/A-Bot/blob/master/meta/background.png?raw=true" style="height:50px;width:100%;object-fit:cover;"><br>
+<img src="https://github.com/rramboer/A-Bot/blob/master/meta/background.png?raw=true"><br>
 
 ## A-Bot <br>
 ### Overview <br>

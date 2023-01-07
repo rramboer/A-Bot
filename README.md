@@ -1,3 +1,4 @@
+<div style="height:100px;background:url(https://lh3.googleusercontent.com/pw/AL9nZEWiJ5bi42ouQpFLMthDP6csCjEael24uf4JOUS6hZFUtLCNuzza4PFJB_nDe-7wneSqRuA1YfwoN1EUf-NgJHY2HLX85Ui_TQ7fXSAdY4NrjsD3jJfPuyTxqpdzAKzxo4xUjXN0752h3krRTPEuuQXT=w2694-h1682-no?authuser=1); background-position:center"></div>
 ## A-Bot
 ### Overview
 A-Bot is a simple discord bot built with the EECS370 discord server in mind. Based on [zombbblob (github)](https://github.com/ToafdaLoaf/zombbblob)

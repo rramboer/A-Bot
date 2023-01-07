@@ -38,29 +38,19 @@ module.exports = {
     callback: async ({ user, args }) => {
         try {
             let db = await mongoClient.db('botCasino');
-            let _user = await db.collection('users').findOne(
-                {
-                    user_id: user.id,
-                }
-            );
+            let _user = await db.collection('users').findOne({user_id: user.id,});
             if (_user == undefined || _user == null || _user == NaN) {
-                return {
-                    content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
-                }
+                return {content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"}
             }
             let betAmount = parseInt(args[0]);
             if (betAmount < 0) {
-                return {
-                    content: "You can't bet an amount less than zero. Sorry! I don't make the rules."
-                }
+                return {content: "You can't bet an amount less than zero. Sorry! I don't make the rules."}
             }
             if (betAmount == NaN) {
                 return { content: "Inappropriate" }
             }
             if (betAmount > _user.coins) {
-                return {
-                    content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?"
-                }
+                return {content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?"}
             }
             console.log(`User ${user.username} is playing rock paper scissors and bet ${betAmount} coins.`);
             return {
@@ -73,21 +63,21 @@ module.exports = {
                                 type: 2,
                                 label: "🪨",
                                 style: 4,
-                                custom_id: (`rock:${betAmount}`),
+                                custom_id: (`rock:${betAmount}:${_user.id}`),
                                 user: user.id,
                             },
                             {
                                 type: 2,
                                 label: "📃",
                                 style: 3,
-                                custom_id: (`paper:${betAmount}`),
+                                custom_id: (`paper:${betAmount}:${_user.id}`),
                                 user: user.id,
                             },
                             {
                                 type: 2,
                                 label: "✂️",
                                 style: 1,
-                                custom_id: (`scissors:${betAmount}`),
+                                custom_id: (`scissors:${betAmount}:${_user.id}`),
                                 play_type: "scissors",
                                 user: user.id,
                             },

@@ -25,7 +25,6 @@ exports.reactionRoleChannel = reactionRoleChannel;
 exports.reactionRoleMessage = reactionRoleMessage;
 exports.mongoClient = mongoClient;
 
-
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));
 
@@ -40,7 +39,7 @@ const client = new Client({
     ],
     partials: [Partials.Channel],
 });
-
+exports.discordClient = client;
 // When the client is ready, run this code (only once)
 client.on('ready', c => {
     console.log(`Bot is online! Logged in as ${c.user.tag}`);

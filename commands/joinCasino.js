@@ -3,7 +3,7 @@ const { mongoClient } = require("..");
 
 module.exports = {
     // Required for slash commands
-    description: "Join the bot casino! You can remove yourself laterwith /removeCasino.",
+    description: "Join the bot casino! You can remove yourself laterwith /removecasino.",
     // Create a legacy and slash command
     type: CommandType.BOTH,
     callback: async ({ user }) => {
@@ -15,6 +15,16 @@ module.exports = {
         console.log("this is the user:::");
         console.log(user);
         console.log(user.id);
+        let _user = await db.collection('users').findOne(
+            {
+                user_id:user.id,
+            }
+        );
+        if(!(_user == undefined || _user == null || _user == NaN)) {
+            return {
+                content: "You're already in the casino! Stop it."
+            }
+        }
         await db.collection('users').insertOne({
             user_id: user.id,
             name: user.username,

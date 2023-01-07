@@ -7,29 +7,41 @@ module.exports = {
     // Create a legacy and slash command
     type: CommandType.BOTH,
     callback: async ({user}) => {
-        let db = await mongoClient.db('botCasino');
-        let users = await db.collection('users');
-        let _user = await users.findOne(
-            {
-                user_id:user.id,
+        try {
+            let db = await mongoClient.db('botCasino');
+            let users = await db.collection('users');
+            let _user = await users.findOne(
+                {
+                    user_id:user.id,
+                }
+            );
+            if(_user == undefined || _user == null || _user == NaN) {
+                return {
+                    content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
+                }
             }
-        );
-        if(!_user.employed) {
-            return {
-                content: "Sorry, you are unemployed! Get a job first, using the command `<not_implemented>`!",
+            if(!_user.employed) {
+                return {
+                    content: "Sorry, you are unemployed! Get a job first, using the command `<not_implemented>`!",
+                }
+            } else {
+                let earnings = _user.income;
+                // users.updateOne({user_id:user.id},{
+                //     $inc: {
+                //         coins: earnings,
+                //     },
+                //     $set: {
+                //         bonusAvailable:false,
+                //     }
+                // });
+                return {
+                    content: "Nice! Come back in one hour to claim your paycheck of " + earnings + " coins!"
+                }
             }
-        } else {
-            let earnings = _user.income;
-            // users.updateOne({user_id:user.id},{
-            //     $inc: {
-            //         coins: earnings,
-            //     },
-            //     $set: {
-            //         bonusAvailable:false,
-            //     }
-            // });
+        } catch(e) {
+            console.error(e);
             return {
-                content: "Nice! Come back in one hour to claim your paycheck of " + earnings + " coins!"
+                content: "☠️ Oops! Something went wrong on my end."
             }
         }
     }

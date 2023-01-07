@@ -15,5 +15,6 @@ module.exports = (message) => {
         console.log(`The bot said \"Soon\" to ${message.author.username}.`);
     } else if (message.content.includes('when') && message.content.includes('sex')) {
         message.reply("sorry pal, you're a CS major");
+        console.log(`User ${message.author.username} solicited sex.`);
     }
 };

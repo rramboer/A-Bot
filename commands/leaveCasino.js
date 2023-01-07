@@ -3,7 +3,7 @@ const { mongoClient } = require("..");
 
 module.exports = {
     // Required for slash commands
-    description: "Join the bot casino! You can remove yourself laterwith /removeCasino.",
+    description: "This removes you from the bot casino (cannot be undone!).",
     // Create a legacy and slash command
     type: CommandType.BOTH,
     callback: async ({ user }) => {

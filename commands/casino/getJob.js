@@ -29,6 +29,34 @@ const jobs = [
     {
         name:"EECS281 IA",
         earnings: 301
+    },
+    {
+        name:"Comedian",
+        earnings:690
+    },
+    {
+        name:"Chick Sexer (identify sex of chickens)",
+        earnings:450
+    },
+    {
+        name:"Plumber",
+        earnings:390
+    },
+    {
+        name:"Electrician",
+        earnings:385
+    },
+    {
+        name:"Circuit City CEO",
+        earnings:50
+    },
+    {
+        name:"Santa",
+        earnings:450
+    },
+    {
+        name:"Public Water Fountain Coin Scavenger",
+        earnings:800
     }
 ]
 

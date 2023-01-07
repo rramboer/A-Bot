@@ -58,6 +58,16 @@ module.exports = {
             }
 
             var betAmount = parseInt(args[0]);
+            if(betAmount < 0) {
+                return {
+                    content: "You can't bet an amount less than zero. Sorry! I don't make the rules."
+                }
+            }
+            if(betAmount > _user.coins) {
+                return {
+                    content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?"
+                }
+            }
             let player = [getRandomRoll(), getRandomRoll()],
                 opp = [getRandomRoll(), getRandomRoll()];
             console.log("player rolls = " + player[0] + "," + player[1]);

@@ -22,7 +22,7 @@ module.exports = {
             }
             if(!_user.employed) {
                 return {
-                    content: "Sorry, you are unemployed! Get a job first, using the command `<not_implemented>`!",
+                    content: "Sorry, you are unemployed! Get a job first, using the command `/getjob`!",
                 }
             } else {
                 let earnings = _user.income;

@@ -41,4 +41,5 @@ __BotCasino__<br>
 `/guess <bet_amount>`
 
 __Miscellanious__<br>
-`/gpr` *grass privileges revoked*
+`/gpr` *grass privileges revoked*<br>
+`/github` *Links to this repository*

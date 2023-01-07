@@ -18,8 +18,9 @@ module.exports = async (interaction, user) => {
         );
         let opp = getRandomSelection();
         await interaction.deferUpdate();
-        await wait(100);
-        let betAmount = interaction.customId.amt;
+        await wait(10);
+        let playType = interaction.customId.substring(0,interaction.customId.indexOf(":")),
+            betAmount = interaction.customId.substring(interaction.customId.indexOf(":") + 1, interaction.customId.length);
         if(interaction.customId.type == "rock") {
             await interaction.editReply({ content: 'Time for some old-fashioned roshambo! Rock, paper, or scissors? Pick one!\nYou chose 🪨!\n', components: [] });
             await wait(2000);

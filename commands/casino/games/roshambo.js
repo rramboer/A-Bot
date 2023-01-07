@@ -72,30 +72,21 @@ module.exports = {
                                 type:2,
                                 label:"🪨",
                                 style:4,
-                                custom_id:{
-                                    type:"rock",
-                                    amt:betAmount
-                                },
+                                custom_id:(`rock:${betAmount}`),
                                 user:user.id,
                             },
                             {
                                 type:2,
                                 label:"📃",
                                 style:3,
-                                custom_id:{
-                                    type:"paper",
-                                    amt:betAmount
-                                },
+                                custom_id:(`paper:${betAmount}`),
                                 user:user.id,
                             },
                             {
                                 type:2,
                                 label:"✂️",
                                 style:1,
-                                custom_id:{
-                                    type:"scissors",
-                                    amt:betAmount
-                                },
+                                custom_id:(`scissors:${betAmount}`),
                                 play_type:"scissors",
                                 user:user.id,
                             },

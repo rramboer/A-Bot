@@ -16,7 +16,7 @@ module.exports = {
                 }
             );
             // console.log("user retrieved=" + _user);
-            console.log(_user);
+            //console.log(_user);
             if (_user == undefined || _user == null || _user == NaN) {
                 return {
                     content: "I have no idea who you are. Join the casino with `/joincasino`."
@@ -40,7 +40,7 @@ module.exports = {
                         $inc: { coins: bonus, }, $set: { bonusAvailable: false, }
                     });
                 }
-                console.log("BONUS====" + bonus);
+                //console.log("BONUS====" + bonus);
                 return {
                     content: "🤯 You just claimed your bonus of " + bonus + " coins!"
                 }

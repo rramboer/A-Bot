@@ -6,38 +6,38 @@ module.exports = {
     description: "Use this command to claim your bonus if it is available.",
     // Create a legacy and slash command
     type: CommandType.BOTH,
-    callback: async ({user}) => {
+    callback: async ({ user }) => {
         try {
             let db = await mongoClient.db('botCasino');
-            console.log("attempting to find user " + user.username + " with ID=" + user.id);
+            console.log(`User: ${user.username} is attempting to claim bonus.`);
             let _user = await db.collection('users').findOne(
                 {
-                    user_id:user.id,
+                    user_id: user.id,
                 }
             );
             // console.log("user retrieved=" + _user);
             console.log(_user);
-            if(_user == undefined || _user == null || _user == NaN) {
+            if (_user == undefined || _user == null || _user == NaN) {
                 return {
-                    content: "👻 Boo! I am a ghost. Just kidding. I have no idea who you are. Join the casino with `/joincasino`."
+                    content: "I have no idea who you are. Join the casino with `/joincasino`."
                 }
             }
-            if(_user.bonusAvailable) {
+            if (_user.bonusAvailable) {
                 let bonus = Math.floor((Math.random() * 1000) + 500);
                 let new_coins = _user.coins + bonus;
-                if(new_coins == NaN || _user.coins == NaN) {
-                    db.collection('users').updateOne({user_id:user.id},{
+                if (new_coins == NaN || _user.coins == NaN) {
+                    db.collection('users').updateOne({ user_id: user.id }, {
                         $set: {
                             coins: new_coins,
-                            bonusAvailable:false
+                            bonusAvailable: false
                         },
                     });
-                    return { 
+                    return {
                         content: "😳 Oops! I deleted all of your coins lol (not a joke). Must've been a bit flip"
                     }
                 } else {
-                    db.collection('users').updateOne({user_id:user.id},{
-                        $inc: {coins: bonus,},$set: {bonusAvailable:false,}
+                    db.collection('users').updateOne({ user_id: user.id }, {
+                        $inc: { coins: bonus, }, $set: { bonusAvailable: false, }
                     });
                 }
                 console.log("BONUS====" + bonus);
@@ -49,7 +49,7 @@ module.exports = {
                     content: "Sorry! 😔 You've already claimed your bonus."
                 }
             }
-        } catch(e) {
+        } catch (e) {
             console.error(e);
             return {
                 content: "☠️ Oops! Something went wrong on my end."

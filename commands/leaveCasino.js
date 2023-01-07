@@ -13,23 +13,24 @@ module.exports = {
         let users = await db.collections('users');
         let _user = await db.collection('users').findOne(
             {
-                user_id:user.id,
+                user_id: user.id,
             }
         );
-        if((_user == undefined || _user == null || _user == NaN)) {
+        if ((_user == undefined || _user == null || _user == NaN)) {
             return {
-                content: "You're not even in the casino. Why are you trying to leave? Rude"
+                content: "You're not even in the casino. Why are you trying to leave? Rude..."
             }
         }
-        console.log(users);
-        console.log("this is the user:::");
-        console.log(user);
-        console.log(user.id);
+        //console.log(users);
+        //console.log("this is the user:::");
+        //console.log(user);
+        //console.log(user.id);
+        console.log(`Removing user ${user.username} from the casino.`);
         await db.collection('users').deleteOne({
-            user_id:user.id,
+            user_id: user.id,
         });
         return {
-            content: "You have left the casino. We'll miss you 🥺😥😭",
+            content: "You have left the casino. We'll miss you! 🥺😥😭",
         }
     }
 }

@@ -8,45 +8,46 @@ const { ApplicationCommandOption, ApplicationCommandOptionType } = require('disc
  */
 function rps(player) {
     let opp = Math.ceil(Math.random() * 3);
-    if(player == opp) { return 0; }    
-    if(player == 1) {
+    if (player == opp) { return 0; }
+    if (player == 1) {
         return (opp == 2) ? -1 : 1;
-    } else if(player == 2) {
+    } else if (player == 2) {
         return (opp == 3) ? -1 : 1;
-    } else if(player == 3) {
+    } else if (player == 3) {
         return (opp == 1) ? -1 : 1;
     }
 }
 
 module.exports = {
     // Required for slash commands
-    description: "Play rock paper scissors! Win your bet back by beating your opponent.",
+    description: "Play rock paper scissors! Win your bet amount by beating your opponent.",
     // Create a legacy and slash command
     type: CommandType.BOTH,
     // setup args
-    expectedArgs:"<bet>",
-    minArgs:1,
-    maxArgs:1,
+    expectedArgs: "<bet>",
+    minArgs: 1,
+    maxArgs: 1,
+    aliases: ["rps"],
     correctSyntax: "To run the command, specify the amount of your bet. Must be an integer value.",
-    callback: async ({user}) => {
+    callback: async ({ user }) => {
         try {
             let db = await mongoClient.db('botCasino');
             let _user = await db.collection('users').findOne(
                 {
-                    user_id:user.id,
+                    user_id: user.id,
                 }
             );
             console.log("attempting to find user " + user.username + " with ID=" + user.id);
-            if(_user == undefined || _user == null || _user == NaN) {
+            if (_user == undefined || _user == null || _user == NaN) {
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
                 }
             }
-            
-        } catch(e) {
+
+        } catch (e) {
             console.error(e);
             return {
-                content: "🤕 Uh oh! There was an error. Try again lol"
+                content: "Uh oh! There was an error. Try again. 🤕"
             }
         }
     }

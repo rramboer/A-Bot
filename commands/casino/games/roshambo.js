@@ -37,7 +37,7 @@ module.exports = {
     callback: async ({ user }) => {
         try {
             return {
-                content: "this doesn't do anything sorry my bad 😂"
+                content: "Not implemented my bad 😂"
             }
             let db = await mongoClient.db('botCasino');
             let _user = await db.collection('users').findOne(

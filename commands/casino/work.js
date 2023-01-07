@@ -26,16 +26,21 @@ module.exports = {
                 }
             } else {
                 let earnings = _user.income;
-                // users.updateOne({user_id:user.id},{
-                //     $inc: {
-                //         coins: earnings,
-                //     },
-                //     $set: {
-                //         bonusAvailable:false,
-                //     }
-                // });
-                return {
-                    content: "Nice! Come back in one hour to claim your paycheck of " + earnings + " coins!"
+                if(_user.working) {
+                    users.updateOne({user_id:user.id},{
+                        $inc: {coins: earnings,},
+                        $set: {working:true,}
+                    });
+                    return {
+                        content: "Nice! You just claimed a paycheck of " + earnings + " coins! Come back in an hour for another " + earnings + " coins! 🤑💰🪙"
+                    }
+                } else {
+                    users.updateOne({user_id:user.id},{
+                        $set: {working:true,}
+                    });
+                    return {
+                        content: "Nice! Come back in one hour to claim your paycheck of " + earnings + " coins!"
+                    }
                 }
             }
         } catch(e) {

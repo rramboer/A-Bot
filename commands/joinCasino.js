@@ -33,6 +33,7 @@ module.exports = {
             income: 0,
             lastDaily: new Date(0).toISOString(),
             bonusAvailable: true,
+            working: false
         }, (error) => {
             if (error) {
                 console.error(error);

@@ -37,6 +37,10 @@ module.exports = {
     description: "Play dice!",
     // Create a legacy and slash command
     type: CommandType.BOTH,
+    cooldowns: {
+        type:CooldownTypes.perUser,
+        duration: "5 m"
+    },
     // setup args
     expectedArgs: "<bet>",
     minArgs: 1,

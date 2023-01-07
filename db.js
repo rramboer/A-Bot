@@ -13,19 +13,18 @@ module.exports = {
             await m_client.connect();
 
             await listDatabases(m_client);
-        } catch(e) {
+        } catch (e) {
             console.log(e);
         }
 
     },
 }
 
-async function listDatabases(client){
-    console.log("attempting to list database on client!");
+async function listDatabases(client) {
+    console.log("Attempting to list database on client...");
     // console.log(client);
     databasesList = await client.db().admin().listDatabases();
- 
+
     console.log("Databases:");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
- 

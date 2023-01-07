@@ -37,7 +37,7 @@ module.exports = {
                     user_id: user.id,
                 }
             );
-            console.log("attempting to find user " + user.username + " with ID=" + user.id);
+            console.log(`User ${user.username} is playing rock paper scissors.`);
             if (_user == undefined || _user == null || _user == NaN) {
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"

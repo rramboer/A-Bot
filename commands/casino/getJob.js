@@ -2,21 +2,79 @@ const { CommandType } = require("wokcommands");
 const { mongoClient } = require("../..");
 
 const jobs = [
-    {name:"Tesla Investor",earnings:-10000}, 
-    {name:"Tech CEO",earnings:2000},
-    {name:"Taxi Driver",earnings:250},
-    {name:"Fry Cook (making french fries all day)",earnings:300},
-    {name:"Discord Moderator",earnings:150},
-    {name:"EECS370 IA",earnings:300},
-    {name:"EECS281 IA",earnings: 301},
-    {name:"Comedian",earnings:690},
-    {name:"Chick Sexer (identify sex of chickens)",earnings:450},
-    {name:"Plumber",earnings:390},
-    {name:"Electrician",earnings:385},
-    {name:"Circuit City CEO",earnings:50},
-    {name:"Santa",earnings:450},
-    {name:"Public Water Fountain Coin Scavenger",earnings:800}
-];
+    {
+        name: "Tesla Investor",
+        earnings: -10000
+    },
+    {
+        name: "Tech CEO",
+        earnings: 2000
+    },
+    {
+        name: "Taxi Driver",
+        earnings: 250
+    },
+    {
+        name: "Fry Cook",
+        earnings: 300
+    },
+    {
+        name: "Discord Moderator",
+        earnings: 150
+    },
+    {
+        name: "EECS 370 IA",
+        earnings: 300
+    },
+    {
+        name: "EECS 281 IA",
+        earnings: 301
+    },
+    {
+        name: "Comedian",
+        earnings: 690
+    },
+    {
+        name: "Chick Sexer (identify sex of chickens)",
+        earnings: 450
+    },
+    {
+        name: "Plumber",
+        earnings: 390
+    },
+    {
+        name: "Electrician",
+        earnings: 385
+    },
+    {
+        name: "Bitcoin Hodler",
+        earnings: -100
+    },
+    {
+        name: "Santa",
+        earnings: 450
+    },
+    {
+        name: "Public Water Fountain Coin Scavenger",
+        earnings: 800
+    },
+    {
+        name: "Minecraft YouTuber",
+        earnings: 999
+    },
+    {
+        name: "Twitch Streamer",
+        earnings: 5
+    },
+    {
+        name: "TikTok Influencer",
+        earnings: -420
+    },
+    {
+        name: "MBus Driver",
+        earnings: 2
+    }
+]
 
 module.exports = {
     // Required for slash commands

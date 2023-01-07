@@ -34,7 +34,7 @@ module.exports = {
             c.messages.fetch(IDs[6]).then(async m => { //Extract message from channel
                 await m.react(args[1]).then(() => {
                     msgInt.reply(`Reacted ${args[1]} to ${m.url}`);
-                    console.log(`User ${user.username} made the bot react ${args[1]} to ${m.url}`);
+                    console.log(`User ${user.username} made the bot react ${args[1]} in \#${c.name}.`);
                 })
                     .catch(() => { msgInt.reply(`Unable to find emoji \`${args[1]}\`.`); return; });
             })

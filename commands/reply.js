@@ -34,7 +34,7 @@ module.exports = {
             c.messages.fetch(IDs[6]).then(async m => { //Extract message from channel
                 await m.reply(args[1]).then(() => {
                     msgInt.reply(`Replied to ${m.url}`);
-                    console.log(`User ${user.username} made the bot reply to ${m.url}`);
+                    console.log(`User ${user.username} made the bot reply in \#${c.name}.`);
                 })
                     .catch(() => { msgInt.reply(`Unable to reply to message.`); return; });
             })

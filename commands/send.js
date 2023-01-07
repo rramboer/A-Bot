@@ -27,7 +27,7 @@ module.exports = {
         guild.channels.fetch(channel)
             .then(async c => {
                 c.send(args[1]); await msgInt.reply(`Message sent in ${args[0]}`);
-                console.log(`User ${user.username} made the bot send a message in ${args[0]}`);
+                console.log(`User ${user.username} made the bot send a message in \#${c.name}.`);
             })
             .catch(() => { msgInt.reply(`Unable to send message. Did you tag the channel with \`#channel\`?`) });
     }

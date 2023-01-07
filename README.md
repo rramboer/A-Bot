@@ -1,6 +1,6 @@
 ## A-Bot
 ### Overview
-A-Bot is a simple discord bot
+A-Bot is a simple discord bot built with the EECS370 discord server in mind. Based on [zombbblob (github)](https://github.com/ToafdaLoaf/zombbblob)
 
 __Features__<br>
 A-Bot features a number of features that are quite unique! These include:<br>
@@ -12,16 +12,22 @@ A-Bot runs using a MongoDB database and can be hosted however you like. To set i
 
 ### Commands List
 
-See commands listed below:
+See commands listed below. Lines highlighted orange are unfinished and not functional.
 
 __General Use__<br>
 `/help` *prints this list*
+
+__EECS370__<br>
+`/piazza` *DMs user with link to class piazza*<br>
+`/piazza <number>` *Generates and posts link to piazza post with given number*
+`/eecs370` *Sends link to eecs370.github.io*
 
 __Administration__<br>
 `/send`<br>
 `/reply`<br>
 `/react`<br>
 `/invite <total_invites>` *generates invite link with finite specified invites*
+
 
 __BotCasino__<br>
 `/joincasino`<br>
@@ -36,3 +42,11 @@ __BotCasino__<br>
 
 __Miscellanious__<br>
 `/gpr` *grass privileges revoked*
+
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```

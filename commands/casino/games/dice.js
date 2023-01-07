@@ -63,7 +63,10 @@ module.exports = {
                     content: "You can't bet an amount less than zero. Sorry! I don't make the rules."
                 }
             }
-            if (betAmount > _user.coins) {
+            if(betAmount == NaN) {
+                return { content: "Inappropriate"}
+            }
+            if(betAmount > _user.coins) {
                 return {
                     content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?"
                 }
@@ -96,7 +99,7 @@ module.exports = {
                     db.collection('users').updateOne({ user_id: user.id }, {
                         $inc: { coins: betAmount * -1, }
                     });
-                    client.channels.cache.get(channel.id).send("Your opponent beat you! You lose " + betAmount + " coins! Sorry. 😵");
+                    client.channels.cache.get(channel.id).send(`😖 Your opponent won! You lose ${betAmount} coins! Sorry. 😵`);
                 }), 6000, db, client, channel, user, betAmount);
             } else {
                 setTimeout(((db, c, user, betAmount) => {

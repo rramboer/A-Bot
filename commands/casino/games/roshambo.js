@@ -1,7 +1,7 @@
 const { CommandType, CooldownTypes } = require("wokcommands");
 const { mongoClient } = require("../../..");
 const { ApplicationCommandOption, ApplicationCommandOptionType } = require('discord.js');
-const { cannotHaveAUsernamePasswordPort } = require("whatwg-url");
+// const { cannotHaveAUsernamePasswordPort } = require("whatwg-url");
 
 /**
  * @param player user input, 1 = rock, 2 = paper, 3 = scissors
@@ -37,6 +37,7 @@ module.exports = {
     correctSyntax: "To run the command, specify the amount of your bet. Must be an integer value.",
     callback: async ({ user, args }) => {
         try {
+            console.log(`User ${user.username} with id ${user.id} is trying trying to play roshambo!`) 
             let db = await mongoClient.db('botCasino');
             let _user = await db.collection('users').findOne({user_id: user.id,});
             if (_user == undefined || _user == null || _user == NaN) {
@@ -63,21 +64,21 @@ module.exports = {
                                 type: 2,
                                 label: "🪨",
                                 style: 4,
-                                custom_id: (`rock:${betAmount}:${_user.id}`),
+                                custom_id: (`rock:${betAmount}:${(user.id).toString()}`),
                                 user: user.id,
                             },
                             {
                                 type: 2,
                                 label: "📃",
                                 style: 3,
-                                custom_id: (`paper:${betAmount}:${_user.id}`),
+                                custom_id: (`paper:${betAmount}:${user.id}`),
                                 user: user.id,
                             },
                             {
                                 type: 2,
                                 label: "✂️",
                                 style: 1,
-                                custom_id: (`scissors:${betAmount}:${_user.id}`),
+                                custom_id: (`scissors:${betAmount}:${user.id}`),
                                 play_type: "scissors",
                                 user: user.id,
                             },

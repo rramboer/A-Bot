@@ -6,9 +6,6 @@ module.exports = {
     description: "Go to work! Make some money.",
     // Create a legacy and slash command
     type: CommandType.BOTH,
-    minArgs: 0,
-    maxArgs: 1,
-    expectedArgs: "<user>",
     cooldowns: {
         errorMessage: "You are already working. Please wait {TIME}.",
         type: CooldownTypes.perUser,
@@ -23,9 +20,6 @@ module.exports = {
                     user_id: (args.length == 0) ? args[0] : user.id,
                 }
             );
-            if(args.length == 1 && _user == undefined || _user == null) {
-                return {content: `Couldn't find that user. Have they joined the casino? Do they even exist? 🤔`}
-            }
             if (_user == undefined || _user == null || _user == NaN) {
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"

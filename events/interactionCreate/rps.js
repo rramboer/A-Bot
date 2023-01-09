@@ -44,7 +44,7 @@ You chose ${playType}!\n`),
         if (game_multiplier == 0) {
             final_message = `🤦 A tie! ${interaction.user.username}'s bet is returned.`
         } else if (game_multiplier == -1) {
-            final_message = `☠️ Fail! ${interaction.user.username}'s bet of ${betAmount} coins has evaporated from existence! 😵`
+            final_message = `☠️ You lose! ${interaction.user.username}'s bet of ${betAmount} coins has been seized by the opponent! 😵`
         } else {
             final_message = `Victory! ${interaction.user.username} wins their bet amount of ${betAmount}! 🥳💃🎉`
         }

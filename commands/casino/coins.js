@@ -42,10 +42,7 @@ module.exports = {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
                 }
             }
-            if (args.length == 1 && (_user == undefined || _user == null)) {
-                console.error("Couldn't find the user. ID given was " + user_id_input + ", and parse as " + user_id);
-                return { content: `Couldn't find that user. Have they joined the casino? Do they even exist? 🤔` }
-            } else if (args.length == 1) {
+            if (args.length == 1) {
                 let earnings = _user.coins;
                 return {
                     content: `${user_id.username} has ${_user.coins} coins!`

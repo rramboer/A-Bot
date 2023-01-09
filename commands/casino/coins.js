@@ -14,7 +14,7 @@ module.exports = {
             let db = await mongoClient.db('botCasino');
             let _user = await db.collection('users').findOne(
                 {
-                    user_id: (args.length == 0) ? args[0] : user.id,
+                    user_id: (args.length == 1) ? args[0] : user.id,
                 }
             );
             const user_id = await client.users.fetch(args[0]).catch(() => null);

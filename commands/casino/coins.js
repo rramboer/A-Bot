@@ -17,7 +17,8 @@ module.exports = {
                     user_id: (args.length == 1) ? args[0] : user.id,
                 }
             );
-            const user_id = await client.users.fetch(args[0]).catch(() => null);
+            if(args.length == 1) { console.log(`COINS command: User ID argument passed in, given user id ${args[0]}`.); }
+            const user_id = await client.users.fetch((args.length == 1) ? args[0] : user.id).catch(() => null);
             if (!user_id) console.log("That user is not available");
             if (_user == undefined || _user == null || _user == NaN) {
                 return {

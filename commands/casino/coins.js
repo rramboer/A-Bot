@@ -47,7 +47,7 @@ module.exports = {
             } else if (args.length == 1) {
                 let earnings = _user.coins;
                 return {
-                    content: `${user_id.tag} has ${_user.coins} coins!`
+                    content: `${user_id.username} has ${_user.coins} coins!`
                 }
             }
             if (_user.coins == NaN) {

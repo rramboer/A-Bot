@@ -17,7 +17,7 @@ module.exports = {
             let users = await db.collection('users');
             let _user = await users.findOne(
                 {
-                    user_id: (args.length == 1) ? args[0] : user.id,
+                    user_id: user.id,
                 }
             );
             if (_user == undefined || _user == null || _user == NaN) {

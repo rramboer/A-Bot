@@ -19,12 +19,12 @@ module.exports = {
             );
             if (args.length == 1) { console.log(`COINS command: User ID argument passed in, given user id ${args[0]}.`); }
             var user_id;
+            var user_id_input = args[0];
             if(args.length == 1) {
-                var user_id_input = args[0];
                 if(user_id_input[0] == "<" && user_id_input[1] == "@") {
                     user_id_input = user_id_input.substring(2, user_id_input.length - 1);
                 }
-                user_id = await client.users.fetch(user_id_input).catch(() => null);
+                user_id = await client.users.fetch(user_id_input).catch((e) => console.error(e));
             } else {
                 user_id = await client.users.fetch(user.id).catch(() => null);
             }
@@ -40,6 +40,7 @@ module.exports = {
                 }
             }
             if (args.length == 1 && _user == undefined || _user == null) {
+                console.error("Couldn't find the user. ID given was " + user_id_input + ", and parse as " + user_id);
                 return { content: `Couldn't find that user. Have they joined the casino? Do they even exist? 🤔` }
             } else if (args.length == 1) {
                 let earnings = _user.coins;

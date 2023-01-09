@@ -36,7 +36,7 @@ module.exports = {
             }
             if (_user == undefined || _user == null || _user == NaN) {
                 if (args.length > 0) {
-                    return { content: `I searched high and low and couldn't find that user. Do they even exist?` }
+                    return { content: `This user is not in the casino yet.` }
                 }
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"

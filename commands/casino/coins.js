@@ -26,7 +26,7 @@ module.exports = {
             );
             try {
                 if (args.length == 1) {
-                    user_id = await client.users.fetch(user_id_input).catch((e) => console.error(e));
+                    user_id = await client.users.fetch(user_id_input).catch(() => null);
                 } else {
                     user_id = await client.users.fetch(user.id).catch(() => null);
                 }

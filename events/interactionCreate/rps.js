@@ -28,7 +28,7 @@ module.exports = async (interaction, user) => {
         if (playType == "rock") {
             game_multiplier = (opp == "📃") ? -1 : ((opp == "✂️") ? 1 : 0);
         } else if (playType == "paper") {
-            game_multiplier = (opp == "📃") ? 0 : ((opp == "✂️") ? -1 : 0);
+            game_multiplier = (opp == "📃") ? 0 : ((opp == "✂️") ? -1 : 1);
         } else if (playType == "scissors") {
             game_multiplier = (opp == "📃") ? 1 : ((opp == "✂️") ? 0 : -1);
         }

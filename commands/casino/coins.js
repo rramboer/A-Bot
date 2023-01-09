@@ -17,7 +17,7 @@ module.exports = {
                     user_id: (args.length == 1) ? args[0] : user.id,
                 }
             );
-            if(args.length == 1) { console.log(`COINS command: User ID argument passed in, given user id ${args[0]}`.); }
+            if (args.length == 1) { console.log(`COINS command: User ID argument passed in, given user id ${args[0]}.`); }
             const user_id = await client.users.fetch((args.length == 1) ? args[0] : user.id).catch(() => null);
             if (!user_id) console.log("That user is not available");
             if (_user == undefined || _user == null || _user == NaN) {
@@ -25,14 +25,14 @@ module.exports = {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
                 }
             }
-             if(args.length == 1 && _user == undefined || _user == null) {
-                return {content: `Couldn't find that user. Have they joined the casino? Do they even exist? 🤔`}
-            } else if(args.length == 1) {
+            if (args.length == 1 && _user == undefined || _user == null) {
+                return { content: `Couldn't find that user. Have they joined the casino? Do they even exist? 🤔` }
+            } else if (args.length == 1) {
                 let earnings = _user.coins;
                 return {
                     content: `${user_id.tag} has ${_user.coins} coins!`
                 }
-            } 
+            }
             if (_user.coins == NaN) {
                 users.updateOne({ user_id: user.id }, {
                     $set: {

@@ -18,9 +18,23 @@ module.exports = {
                 }
             );
             if (args.length == 1) { console.log(`COINS command: User ID argument passed in, given user id ${args[0]}.`); }
-            const user_id = await client.users.fetch((args.length == 1) ? args[0] : user.id).catch(() => null);
+            var user_id;
+            if(args.length == 1) {
+                var user_id_input = args[0];
+                if(user_id_input[0] == "<" && user_id_input[1] == "@") {
+                    user_id_input = user_id_input.substring(2, user_id_input.length - 1);
+                }
+                user_id = await client.users.fetch(user_id_input).catch(() => null);
+            } else {
+                user_id = await client.users.fetch(user.id).catch(() => null);
+            }
+                
+            // const user_id = await client.users.fetch((args.length == 1) ? args[0] : user.id).catch(() => null);
             if (!user_id) console.log("That user is not available");
             if (_user == undefined || _user == null || _user == NaN) {
+                if(args.length > 0) {
+                    return { content: `I searched high and low and couldn't find that user. Do they even exist?`}
+                }
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
                 }

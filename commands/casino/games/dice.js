@@ -19,7 +19,11 @@ async function playGame(client, betAmount) {
     setTimeout(((c, p) => { c.send("Your opponent rolled " + p[0] + " and " + p[1] + ".") }).bind(client, opp), 4000);
     if ((player[0] + player[1]) > (opp[0] + opp[1])) {
         if (player[0] == player[1]) {
-            setTimeout(((c, betAmount) => { c.send("Nice 🤯! You win double your bet, gaining " + (betAmount * 2) + " coins!") }).bind(client, betAmount), 6000);
+            if (player[0] == 6) {
+                setTimeout(((c, betAmount) => { c.send("Nice 🤯! You win 4x your bet, gaining " + (betAmount * 4) + " coins!") }).bind(client, betAmount), 6000);
+            } else {
+                setTimeout(((c, betAmount) => { c.send("Nice 🤯! You win double your bet, gaining " + (betAmount * 2) + " coins!") }).bind(client, betAmount), 6000);
+            }
         } else {
             setTimeout(((c, betAmount) => { c.send("Nice 🤯! You win back your bet, gaining " + (betAmount) + " coins!") }).bind(client, betAmount), 6000);
         }
@@ -83,12 +87,21 @@ module.exports = {
             setTimeout(((client, p) => { client.channels.cache.get(channel.id).send("Your opponent rolled " + p[0] + " and " + p[1] + ".") }), 4000, client, opp);
             if ((player[0] + player[1]) > (opp[0] + opp[1])) {
                 if (player[0] == player[1]) {
-                    setTimeout(((db, client, channel, user, betAmount) => {
-                        db.collection('users').updateOne({ user_id: user.id }, {
-                            $inc: { coins: betAmount * 2, }
-                        });
-                        client.channels.cache.get(channel.id).send("Incredible 🤯! You win double your bet, gaining " + (betAmount * 2) + " coins!");
-                    }), 6000, db, client, channel, user, betAmount);
+                    if (player[0] == 6) {
+                        setTimeout(((db, client, channel, user, betAmount) => {
+                            db.collection('users').updateOne({ user_id: user.id }, {
+                                $inc: { coins: betAmount * 4, }
+                            });
+                            client.channels.cache.get(channel.id).send("Miraculous 🍀! You win 4x your bet, gaining " + (betAmount * 4) + " coins!");
+                        }), 6000, db, client, channel, user, betAmount);
+                    } else {
+                        setTimeout(((db, client, channel, user, betAmount) => {
+                            db.collection('users').updateOne({ user_id: user.id }, {
+                                $inc: { coins: betAmount * 2, }
+                            });
+                            client.channels.cache.get(channel.id).send("Incredible 🤯! You win double your bet, gaining " + (betAmount * 2) + " coins!");
+                        }), 6000, db, client, channel, user, betAmount);
+                    }
 
                 } else {
                     setTimeout(((db, client, channel, user, betAmount) => {

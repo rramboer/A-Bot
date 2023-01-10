@@ -43,7 +43,7 @@ module.exports = {
     type: CommandType.BOTH,
     cooldowns: {
         type: CooldownTypes.perUser,
-        duration: "5 m"
+        duration: "10 s"
     },
     // setup args
     expectedArgs: "<bet>",

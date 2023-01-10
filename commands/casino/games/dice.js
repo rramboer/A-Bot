@@ -67,7 +67,7 @@ module.exports = {
                     content: "You can't bet an amount less than zero. Sorry! I don't make the rules."
                 }
             }
-            if (betAmount == NaN) {
+            if (isNaN(betAmount)) {
                 return { content: "Inappropriate" }
             }
             if (betAmount > _user.coins) {

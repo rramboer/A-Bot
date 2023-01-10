@@ -61,6 +61,7 @@ module.exports = {
 
         // im sorry in advance
         embed = new EmbedBuilder()
+            .setColor(0xFF0000)
             .setTitle("A-Bot Help")
             .setFields(helpCommands.map((section) => {return {name: section.sectionTitle, value: `${section.commands.map((cmd) => `**${cmd.name}**: ${cmd.description}`).join('\n')}`}}));
 

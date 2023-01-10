@@ -28,7 +28,7 @@ module.exports = {
         await db.collection('users').insertOne({
             user_id: user.id,
             name: user.username,
-            cash: 0,
+            coins: 0,
             employed: false,
             income: 0,
             lastDaily: new Date(0).toISOString(),

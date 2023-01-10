@@ -34,11 +34,7 @@ module.exports = {
             lastDaily: new Date(0).toISOString(),
             bonusAvailable: true,
             working: false
-        }, (error) => {
-            console.error(error);
-            console.log(error);
-        }
-        );
+        });
         console.log(`User ${user.username} added to database.`);
         return {
             content: `Welcome to the casino, ${user.username}! You have nothing to your name. Claim a starting bonus with \`/bonus\`, and start earning an income with \`/getjob\`. Have fun! 🥳`,

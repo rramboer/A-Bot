@@ -62,7 +62,7 @@ module.exports = {
         // im sorry in advance
         embed = new EmbedBuilder()
             .setTitle("A-Bot Help")
-            .setFields(helpCommands.map((section) => `__${section.sectionTitle}__\n\n${section.commands.map((cmd) => `**${cmd.name}**: ${cmd.description}`)}`));
+            .setFields(helpCommands.map((section) => {return {name: section.sectionTitle, value: `${section.commands.map((cmd) => `**${cmd.name}**: ${cmd.description}`)}`}}));
 
         return {
             embeds: [embed]

@@ -36,6 +36,7 @@ module.exports = {
             working: false
         }, (error) => {
             console.error(error);
+            console.log(error);
         }
         );
         console.log(`User ${user.username} added to database.`);

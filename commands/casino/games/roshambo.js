@@ -27,7 +27,7 @@ module.exports = {
     cooldowns: {
         errorMessage: "Please wait {TIME} before playing again. Sorry about that!",
         type: CooldownTypes.perUser,
-        duration: "10 s"
+        duration: "30 s"
     },
     // setup args
     expectedArgs: "<bet>",

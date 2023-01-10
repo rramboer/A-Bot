@@ -33,27 +33,27 @@ module.exports = {
                     },
                     {
                         name: "/leavecasino",
-                        description: "Drops you to the casino"
+                        description: "Removes you from the casino"
                     },
                     {
                         name: "/getjob",
-                        description: "Allows you to get a job for coin income"
+                        description: "Assigns you a job for coin income"
                     },
                     {
                         name: "/work",
-                        description: "Gets coin income based on your job"
+                        description: "Earns coin income based on your job"
                     },
                     {
                         name: "/coins",
-                        description: "Displays your balance"
+                        description: "Displays your current balance"
                     },
                     {
                         name: "/dice <bet>",
-                        description: "Roll dice to gain or lose coins!"
+                        description: "Roll dice to gain or lose coins"
                     },
                     {
                         name: "/roshambo <bet>",
-                        description: "Play the classic game, with a bet involved"
+                        description: "Play rock paper scissors, with a bet involved"
                     },
                 ]
             },

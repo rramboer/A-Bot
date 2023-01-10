@@ -63,7 +63,9 @@ module.exports = {
         embed = new EmbedBuilder()
             .setColor(0xFF0000)
             .setTitle("A-Bot Help")
-            .setFields(helpCommands.map((section) => {return {name: section.sectionTitle, value: `${section.commands.map((cmd) => `**${cmd.name}**: ${cmd.description}`).join('\n')}`}}));
+            .setFields(helpCommands.map((section) => { return { name: section.sectionTitle, value: `${section.commands.map((cmd) => `**${cmd.name}**: ${cmd.description}`).join('\n')}` } }));
+
+        console.log(`User ${user.username} requested the help menu.`);
 
         return {
             embeds: [embed]

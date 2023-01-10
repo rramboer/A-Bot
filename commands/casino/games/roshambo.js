@@ -37,7 +37,7 @@ module.exports = {
     correctSyntax: "To run the command, specify the amount of your bet. Must be an integer value.",
     callback: async ({ user, args }) => {
         try {
-            console.log(`User ${user.username} with id ${user.id} is trying trying to play roshambo!`)
+            //console.log(`User ${user.username} with id ${user.id} is trying trying to play roshambo!`)
             let db = await mongoClient.db('botCasino');
             let _user = await db.collection('users').findOne({ user_id: user.id, });
             if (_user == undefined || _user == null || _user == NaN) {

@@ -11,7 +11,7 @@ module.exports = {
     options: [
         {
             name: "postNumber",
-            description: "The post #",
+            description: "Piazza post #",
             type: ApplicationCommandOptionType.Number,
             required: false
         }

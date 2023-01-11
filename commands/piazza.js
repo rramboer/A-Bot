@@ -23,7 +23,7 @@ module.exports = {
         // interaction.reply
         // WOKCommands will reply to the message or the interaction
         // depending on how the user ran the command (legacy vs slash)
-        let postNumber = args.postnumber ?? null;
+        let postNumber = args[0] ?? null;
         if (postNumber == null) {
             console.log(`User ${user.username} requested a link to the Piazza page.`);
             return {

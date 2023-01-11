@@ -67,7 +67,6 @@ module.exports = {
             },
         ];
 
-        // im sorry in advance
         embed = new EmbedBuilder()
             .setColor(0xFF0000)
             .setTitle("A-Bot Help")

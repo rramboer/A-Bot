@@ -63,6 +63,10 @@ module.exports = {
                         name: "/roshambo <bet>",
                         description: "Play rock paper scissors, with a bet involved"
                     },
+                    {
+                        name: "/sourcecode",
+                        description: "View the A-Bot source code"
+                    },
                 ]
             },
         ];

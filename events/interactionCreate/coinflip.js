@@ -31,9 +31,8 @@ module.exports = async (interaction, user) => {
         await wait(1000);
         await interaction.editReply({
             content: (
-                `Time for some old-fashioned roshambo! Rock, paper, or scissors? Pick one!
+                `Time for a coinflip!
 You chose ${playType}
-Your opponent chose ${opp}
 ${final_message}`),
             components: []
         });

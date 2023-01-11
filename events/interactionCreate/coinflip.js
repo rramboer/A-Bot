@@ -7,7 +7,6 @@ module.exports = async (interaction, user) => {
     if (interaction.isButton()) {
         let db = await mongoClient.db('botCasino');
         let _user = await db.collection('users').findOne({ user_id: interaction.user.id, });
-        let opp = getRandomSelection();
         await interaction.deferUpdate();
         await wait(100);
         let customId = interaction.customId;
@@ -20,7 +19,8 @@ module.exports = async (interaction, user) => {
         //console.log("Interaction trigged by user with ID " + interaction.user.id + ". VERIFICATION_ID is " + verification_id);
         if (verification_id != _user.user_id) { return; }
         //console.log("Interaction event triggered. " + "playType==" + playType + ", user==" + interaction.user + ", betAmt==" + betAmount);
-        var game_multiplier = 0;
+        var game_multiplier = 1;
+        if (Math.random() < 0.5) { game_multiplier = -1;}
         //console.log("ROSHAMBO: editing reply");
         await interaction.editReply({
             content: (

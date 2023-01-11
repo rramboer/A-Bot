@@ -19,15 +19,9 @@ module.exports = async (interaction, user) => {
         //console.log("Interaction trigged by user with ID " + interaction.user.id + ". VERIFICATION_ID is " + verification_id);
         if (verification_id != _user.user_id) { return; }
         //console.log("Interaction event triggered. " + "playType==" + playType + ", user==" + interaction.user + ", betAmt==" + betAmount);
-        var game_multiplier = 1;
+        let game_multiplier = 1;
         if (Math.random() < 0.5) { game_multiplier = -1;}
         //console.log("ROSHAMBO: editing reply");
-        await interaction.editReply({
-            content: (
-                `It's all down to a coin flip! Heads or tails? Pick one!
-You chose ${playType}!\n`),
-            components: []
-        });
         let final_message = ``;
         if (game_multiplier == -1) {
             final_message = `You lose, it was ${playType === "heads" ? "tails" : "heads"}! ${interaction.user.username}'s bet of ${betAmount} coins has been seized by the opponent! 😵`
@@ -35,6 +29,14 @@ You chose ${playType}!\n`),
             final_message = `Correct, ${playType}! ${interaction.user.username} wins their bet amount of ${betAmount}! 🥳💃🎉`
         }
         await wait(1000);
+        await interaction.editReply({
+            content: (
+                `Time for some old-fashioned roshambo! Rock, paper, or scissors? Pick one!
+You chose ${playType}
+Your opponent chose ${opp}
+${final_message}`),
+            components: []
+        });
         db.collection('users').updateOne({ user_id: interaction.user.id }, { $inc: { coins: game_multiplier * betAmount } });
     }
 };

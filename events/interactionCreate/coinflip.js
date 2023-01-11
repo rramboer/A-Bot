@@ -24,7 +24,7 @@ module.exports = async (interaction, user) => {
         //console.log("ROSHAMBO: editing reply");
         await interaction.editReply({
             content: (
-                `Time for some old-fashioned roshambo! Rock, paper, or scissors? Pick one!
+                `It's all down to a coin flip! Heads or tails? Pick one!
 You chose ${playType}!\n`),
             components: []
         });

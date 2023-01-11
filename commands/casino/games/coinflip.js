@@ -14,7 +14,7 @@ function coinflip() {
 
 module.exports = {
     // Required for slash commands
-    description: "50-50 for coins!",
+    description: "Flip a coin!",
     // Create a legacy and slash command
     type: CommandType.BOTH,
     cooldowns: {
@@ -45,7 +45,7 @@ module.exports = {
             if (betAmount > _user.coins) {
                 return { content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?" }
             }
-            console.log(`User ${user.username} is flipping a coin and bet ${betAmount} coins.`);
+            console.log(`User ${user.username} is flipped a coin and bet ${betAmount} coins.`);
             return {
                 content: "Heads or tails? Pick one!",
                 components: [

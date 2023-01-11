@@ -4,7 +4,7 @@ const { ApplicationCommandOption, ApplicationCommandOptionType } = require('disc
 // const { cannotHaveAUsernamePasswordPort } = require("whatwg-url");
 
 /**
- * @param player user input, 1 = rock, 2 = paper, 3 = scissors
+ * @param player user input, 1 = heads, 2 = tails
  * @returns 0 = tie, 1 = win, -1 = lose
  */
 function coinflip() {

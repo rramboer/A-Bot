@@ -64,7 +64,7 @@ module.exports = {
                                 type: 2,
                                 label: "🪨",
                                 style: 4,
-                                custom_id: (`rock:${betAmount}:${(user.id).toString()}`),
+                                custom_id: (`rock:${betAmount}:${user.id}`),
                                 user: user.id,
                             },
                             {

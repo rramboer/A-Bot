@@ -3,7 +3,7 @@ const { CommandType } = require("wokcommands");
 
 module.exports = {
     // Required for slash commands
-    description: "Ping",
+    description: "Get a link to the piazza page or a specific post.",
     // Create a legacy and slash command
     type: CommandType.BOTH,
     options: [

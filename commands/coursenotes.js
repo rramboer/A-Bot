@@ -14,7 +14,7 @@ module.exports = {
         // depending on how the user ran the command (legacy vs slash)
         console.log(`User ${user.username} requested a link to the course notes.`);
         return {
-            content: "Check out the (unofficial) course notes at https://github.com/danlliu/eecs370notes!",
+            content: "Check out the (unofficial) course notes at https://github.com/danlliu/eecs370notes !",
         }
     }
 }

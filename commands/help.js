@@ -16,12 +16,20 @@ module.exports = {
 
         const helpCommands = [
             {
-                sectionTitle: "General Use",
+                sectionTitle: "General",
                 commands: [
                     {
                         name: "/help",
                         description: "Prints this help message"
                     },
+                    {
+                        name: "/piazza [postnumber]",
+                        description: "Prints a link to the piazza page or a specific post"
+                    },
+                    {
+                        name: "/coursenotes",
+                        description: "Posts a link to the unofficial course notes"
+                    }
                 ]
             },
             {
@@ -44,8 +52,8 @@ module.exports = {
                         description: "Earns coin income based on your job"
                     },
                     {
-                        name: "/coins",
-                        description: "Displays your current balance"
+                        name: "/coins [user]",
+                        description: "Displays current balance of you or another user"
                     },
                     {
                         name: "/dice <bet>",

@@ -28,6 +28,7 @@ module.exports = {
     maxArgs: 1,
     correctSyntax: "To run the command, specify the amount of your bet. Must be an integer value.",
     callback: async ({ user, args }) => {
+        return { content: "This command is currently disabled. Please try again later." };
         try {
             //console.log(`User ${user.username} with id ${user.id} is trying trying to play roshambo!`)
             let db = await mongoClient.db('botCasino');

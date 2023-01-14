@@ -1,4 +1,4 @@
-const { mongoClient } = require("../..");
+const { mongoClient, gameId } = require("../..");
 const { reactionRoleMessage } = require("../..");
 const wait = require('node:timers/promises').setTimeout;
 
@@ -8,19 +8,17 @@ function getRandomSelection() {
 
 module.exports = async (interaction, user) => {
     //console.log("Event triggered");
-    if (interaction.isButton()) {
+    const data = JSON.parse(interaction.customId);
+    if (interaction.isButton() && data.game_id == gameId.roshambo) {
         let db = await mongoClient.db('botCasino');
         let _user = await db.collection('users').findOne({ user_id: interaction.user.id, });
         let opp = getRandomSelection();
         await interaction.deferUpdate();
         await wait(100);
-        let customId = interaction.customId;
         //console.log("BUTTON INTERACTION customId = " + customId);
-        let first_colon = customId.indexOf(":"),
-            second_colon = customId.indexOf(":", first_colon + 1);
-        let playType = customId.substring(0, customId.indexOf(":")),
-            betAmount = parseInt(customId.substring(first_colon + 1, second_colon)),
-            verification_id = customId.substring(second_colon + 1, customId.length);
+        let playType = data.playType,
+            betAmount = parseInt(data.betAmount),
+            verification_id = data.user_id;
         //console.log("Interaction trigged by user with ID " + interaction.user.id + ". VERIFICATION_ID is " + verification_id);
         if (verification_id != _user.user_id) { return; }
         //console.log("Interaction event triggered. " + "playType==" + playType + ", user==" + interaction.user + ", betAmt==" + betAmount);

@@ -16,6 +16,12 @@ const { fetchTest } = require('./db');
 reactionRoleChannel = roleMessage.channel;
 reactionRoleMessage = roleMessage.message;
 
+const gameId = {
+    roshambo:"d7d3ffc9-2557-4f63-9026-6b3584513d43",
+    coinflip:"17f0135d-a5e7-4fb7-b625-7c113ff6fe70",
+    hangman:"ac6b94c0-1ac1-4004-80b0-bf536f22e652"
+}
+
 const studentRole = '1053544751439290448'; // Student role
 const studentAlumRole = '927680207505211443'; // Student Alumni role
 exports.studentRole = studentRole;
@@ -23,6 +29,7 @@ exports.studentAlumRole = studentAlumRole;
 exports.reactionRoleChannel = reactionRoleChannel;
 exports.reactionRoleMessage = reactionRoleMessage;
 exports.mongoClient = mongoClient;
+exports.gameId = gameId;
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));

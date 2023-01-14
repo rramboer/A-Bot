@@ -75,6 +75,5 @@ client.on('ready', c => {
     });
     client.channels.cache.get(roleMessage.channel).messages.fetch(roleMessage.message);
 });
-
 // Log in to Discord with your client's token
 client.login(token);

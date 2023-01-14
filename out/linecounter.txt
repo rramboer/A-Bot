@@ -1,0 +1,52 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2023-01-13 23:54:04
+count workspace : /home/alex/dev/abot
+total files : 32
+total code lines : 3058
+total comment lines : 149
+total blank lines : 66
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |               |              4|              0|              0|   0.13|
+   |            .js|           1066|            148|             56|     35|
+   |            .md|             35|              1|             10|    1.1|
+   |          .json|           1953|              0|              0|     64|
+   -------------------------------------------------------------------------
+.gitignore, code is 4, comment is 0, blank is 0.
+commands/casino/bonus.js, code is 53, comment is 5, blank is 1.
+commands/casino/coins.js, code is 31, comment is 3, blank is 1.
+commands/casino/games/coinflip.js, code is 70, comment is 9, blank is 2.
+commands/casino/games/dice.js, code is 122, comment is 7, blank is 10.
+commands/casino/games/roshambo.js, code is 82, comment is 9, blank is 3.
+commands/casino/getJob.js, code is 90, comment is 2, blank is 2.
+commands/casino/work.js, code is 57, comment is 2, blank is 1.
+commands/coursenotes.js, code is 11, comment is 2, blank is 1.
+commands/create.js, code is 45, comment is 3, blank is 1.
+commands/gpr.js, code is 9, comment is 2, blank is 1.
+commands/help.js, code is 72, comment is 8, blank is 5.
+commands/invite.js, code is 29, comment is 0, blank is 1.
+commands/joinCasino.js, code is 16, comment is 8, blank is 1.
+commands/leaveCasino.js, code is 27, comment is 8, blank is 1.
+commands/piazza.js, code is 30, comment is 9, blank is 1.
+commands/ping.js, code is 11, comment is 8, blank is 1.
+commands/react.js, code is 42, comment is 4, blank is 1.
+commands/reply.js, code is 42, comment is 4, blank is 1.
+commands/send.js, code is 33, comment is 0, blank is 1.
+commands/sourcecode.js, code is 11, comment is 2, blank is 1.
+db.js, code is 17, comment is 6, blank is 7.
+events/interactionCreate/coinflip.js, code is 8, comment is 33, blank is 1.
+events/interactionCreate/rps.js, code is 59, comment is 5, blank is 2.
+events/messageCreate/soon.js, code is 15, comment is 0, blank is 0.
+events/messageReactionAdd/roles.js, code is 18, comment is 2, blank is 1.
+index.js, code is 66, comment is 7, blank is 8.
+meta/background-crop.png, it is a binary file.
+meta/background.png, it is a binary file.
+package-lock.json, code is 1897, comment is 0, blank is 0.
+package.json, code is 56, comment is 0, blank is 0.
+README.md, code is 35, comment is 1, blank is 10.
+===============================================================================

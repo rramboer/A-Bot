@@ -1,0 +1,233 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "/home/alex/dev/abot",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2023-01-13 23:54:04",
+            "filesum": 32,
+            "codesum": 3058,
+            "commentsum": 149,
+            "blanksum": 66,
+            "statistics": {
+                "": {
+                    "code": 4,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".js": {
+                    "code": 1066,
+                    "comment": 148,
+                    "blank": 56
+                },
+                ".md": {
+                    "code": 35,
+                    "comment": 1,
+                    "blank": 10
+                },
+                ".json": {
+                    "code": 1953,
+                    "comment": 0,
+                    "blank": 0
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 53,
+                    "comment": 5,
+                    "filename": "commands/casino/bonus.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 31,
+                    "comment": 3,
+                    "filename": "commands/casino/coins.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 70,
+                    "comment": 9,
+                    "filename": "commands/casino/games/coinflip.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 122,
+                    "comment": 7,
+                    "filename": "commands/casino/games/dice.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 82,
+                    "comment": 9,
+                    "filename": "commands/casino/games/roshambo.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 90,
+                    "comment": 2,
+                    "filename": "commands/casino/getJob.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 57,
+                    "comment": 2,
+                    "filename": "commands/casino/work.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 2,
+                    "filename": "commands/coursenotes.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 45,
+                    "comment": 3,
+                    "filename": "commands/create.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 2,
+                    "filename": "commands/gpr.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 72,
+                    "comment": 8,
+                    "filename": "commands/help.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "commands/invite.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 16,
+                    "comment": 8,
+                    "filename": "commands/joinCasino.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 27,
+                    "comment": 8,
+                    "filename": "commands/leaveCasino.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 30,
+                    "comment": 9,
+                    "filename": "commands/piazza.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 8,
+                    "filename": "commands/ping.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 42,
+                    "comment": 4,
+                    "filename": "commands/react.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 42,
+                    "comment": 4,
+                    "filename": "commands/reply.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "commands/send.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 2,
+                    "filename": "commands/sourcecode.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 17,
+                    "comment": 6,
+                    "filename": "db.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 33,
+                    "filename": "events/interactionCreate/coinflip.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 59,
+                    "comment": 5,
+                    "filename": "events/interactionCreate/rps.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "events/messageCreate/soon.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 18,
+                    "comment": 2,
+                    "filename": "events/messageReactionAdd/roles.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 66,
+                    "comment": 7,
+                    "filename": "index.js"
+                },
+                {
+                    "filename": "meta/background-crop.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "meta/background.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1897,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 10,
+                    "code": 35,
+                    "comment": 1,
+                    "filename": "README.md"
+                }
+            ]
+        }
+    ]
+}

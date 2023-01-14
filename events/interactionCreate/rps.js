@@ -1,3 +1,4 @@
+const { isUndefined } = require("lodash");
 const { mongoClient, gameId } = require("../..");
 const { reactionRoleMessage } = require("../..");
 const wait = require('node:timers/promises').setTimeout;
@@ -8,6 +9,9 @@ function getRandomSelection() {
 
 module.exports = async (interaction, user) => {
     //console.log("Event triggered");
+    if(isUndefined(interaction.customId)) {
+        return;
+    }
     const data = JSON.parse(interaction.customId);
     if (interaction.isButton() && data.game_id == gameId.roshambo) {
         let db = await mongoClient.db('botCasino');

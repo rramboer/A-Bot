@@ -11,7 +11,7 @@ A-Bot features a number of features that are quite unique! These include:
 - Whatever other random commands you'd probably expect a general-purpose bot to do  
 
 ### Functionality and setup
-A-Bot runs using a MongoDB database and can be hosted however you like. To set it up, you will need to set up your own mongoDB cluster and create a collection called "botCasino". Follow MongoDB's connection instructions and add your connection string to `config.json`.
+A-Bot runs using a MongoDB database and can be hosted however you like. To set it up, you will need to create your own mongoDB cluster and create a collection called "botCasino". Follow MongoDB's connection instructions and add your connection string to `config.json`.
 
 ### Commands List
 

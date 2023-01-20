@@ -64,19 +64,19 @@ module.exports = {
                                 type: 2,
                                 label: "🪨",
                                 style: 4,
-                                custom_id: (`{"game_id":${gameId.roshambo},"playType":"rock","betAmount":${betAmount},"user_id":${user.id}}`),
+                                custom_id: (`{"game_id":"${gameId.roshambo}","playType":"rock","betAmount":"${betAmount}","user_id":"${user.id}"}`),
                             },
                             {
                                 type: 2,
                                 label: "📃",
                                 style: 3,
-                                custom_id: (`{"game_id":${gameId.roshambo},"playType":"paper","betAmount":${betAmount},"user_id":${user.id}}`),
+                                custom_id: (`{"game_id":"${gameId.roshambo}","playType":"paper","betAmount":"${betAmount}","user_id":"${user.id}"}`),
                             },
                             {
                                 type: 2,
                                 label: "✂️",
                                 style: 1,
-                                custom_id: (`{"game_id":${gameId.roshambo},"playType":"scissors","betAmount":${betAmount},"user_id":${user.id}}`),
+                                custom_id: (`{"game_id":"${gameId.roshambo}","playType":"scissors","betAmount":"${betAmount}","user_id":"${user.id}"}`),
                             },
                         ]
                     }

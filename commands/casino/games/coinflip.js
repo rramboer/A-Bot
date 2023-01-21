@@ -29,7 +29,6 @@ module.exports = {
     correctSyntax: "To run the command, specify the amount of your bet. Must be an integer value.",
     callback: async ({ user, args }) => {
         try {
-            //console.log(`User ${user.username} with id ${user.id} is trying trying to play roshambo!`)
             let db = await mongoClient.db('botCasino');
             let _user = await db.collection('users').findOne({ user_id: user.id, });
             if (_user == undefined || _user == null || _user == NaN) {
@@ -56,14 +55,22 @@ module.exports = {
                                 type: 2,
                                 label: "🗿",
                                 style: 4,
-                                custom_id: (`heads:${betAmount}:${user.id}`),
+                                custom_id: JSON.stringify({
+                                    call: "heads",
+                                    betAmount: betAmount,
+                                    user: user.id,
+                                }),
                                 user: user.id,
                             },
                             {
                                 type: 2,
                                 label: "🐈",
                                 style: 3,
-                                custom_id: (`tails:${betAmount}:${user.id}`),
+                                custom_id: JSON.stringify({
+                                    call: "tails",
+                                    betAmount: betAmount,
+                                    user: user.id,
+                                }),
                                 user: user.id,
                             }
                         ]

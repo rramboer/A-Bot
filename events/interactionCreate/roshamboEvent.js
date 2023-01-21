@@ -23,7 +23,9 @@ module.exports = async (interaction, user) => {
             betAmount = parseInt(data.betAmount),
             verification_id = data.user_id;
         console.log("Interaction trigged by user with ID " + interaction.user.id + ". VERIFICATION_ID is " + verification_id);
-        if (verification_id != _user.user_id) { return; }
+        if (verification_id != _user.user_id) { 
+            console.log("User does not match. Exiting event call");
+            return; }
         await interaction.deferUpdate();
         //console.log("Interaction event triggered. " + "playType==" + playType + ", user==" + interaction.user + ", betAmt==" + betAmount);
         var game_multiplier = 0;

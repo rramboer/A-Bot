@@ -40,9 +40,8 @@ __BotCasino__
 `/coins`  
 `/dice <bet_amount>`  
 `/roshambo <bet_amount>`  
-`/roulette <bet_amount>`  
-`/guess <bet_amount>`
+`/coinflip <bet_amount>`
 
 __Miscellaneous__  
 `/gpr` *grass privileges revoked*  
-`/github` *Links to this repository*
+`/soursecode` *Links to this repository*

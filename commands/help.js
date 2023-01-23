@@ -64,6 +64,10 @@ module.exports = {
                         description: "Play rock paper scissors, with a bet involved"
                     },
                     {
+                        name: "/coinflip <bet>",
+                        description: "Flip a coin to gain or lose coins"
+                    },
+                    {
                         name: "/sourcecode",
                         description: "View the A-Bot source code"
                     },

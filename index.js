@@ -17,9 +17,9 @@ reactionRoleChannel = roleMessage.channel;
 reactionRoleMessage = roleMessage.message;
 
 const gameId = {
-    roshambo:"d7d3",
-    coinflip:"17f0",
-    hangman:"ac6b"
+    roshambo: "d7d3",
+    coinflip: "17f0",
+    hangman: "ac6b"
 }
 
 const studentRole = '1053544751439290448'; // Student role
@@ -70,7 +70,7 @@ client.on('ready', c => {
         console.error('Unhandled promise rejection: ', error);
     });
     client.user.setPresence({
-        activities: [{ name: 'Casino Beta - v1.9.7' }],
+        activities: [{ name: 'Casino Beta - v1.9.9' }],
         status: 'online',
     });
     client.channels.cache.get(roleMessage.channel).messages.fetch(roleMessage.message);

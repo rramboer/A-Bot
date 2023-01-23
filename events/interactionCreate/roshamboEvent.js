@@ -16,12 +16,12 @@ module.exports = async (interaction, user) => {
         let db = await mongoClient.db('botCasino');
         let _user = await db.collection('users').findOne({ user_id: interaction.user.id, });
         let opp = getRandomSelection();
-        await interaction.deferUpdate();
+        //await interaction.deferUpdate();
         await wait(100);
         let playType = data.playType,
             betAmount = parseInt(data.betAmount),
             verification_id = data.user_id;
-        console.log("Interaction trigged by user with ID " + interaction.user.id + ". VERIFICATION_ID is " + verification_id);
+        //console.log("Interaction trigged by user with ID " + interaction.user.id + ". VERIFICATION_ID is " + verification_id);
         if (verification_id != _user.user_id) {
             return;
         }

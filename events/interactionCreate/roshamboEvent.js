@@ -8,8 +8,7 @@ function getRandomSelection() {
 }
 
 module.exports = async (interaction, user) => {
-    //console.log("Event triggered");
-    if(isUndefined(interaction.customId)) {
+    if (isUndefined(interaction.customId)) {
         return;
     }
     const data = JSON.parse(interaction.customId);
@@ -19,14 +18,13 @@ module.exports = async (interaction, user) => {
         let opp = getRandomSelection();
         await interaction.deferUpdate();
         await wait(100);
-        //console.log("BUTTON INTERACTION customId = " + customId);
         let playType = data.playType,
             betAmount = parseInt(data.betAmount),
             verification_id = data.user_id;
         console.log("Interaction trigged by user with ID " + interaction.user.id + ". VERIFICATION_ID is " + verification_id);
-        if (verification_id != _user.user_id) { 
-            console.log("User does not match. Exiting event call");
-            return; }
+        if (verification_id != _user.user_id) {
+            return;
+        }
         //console.log("Interaction event triggered. " + "playType==" + playType + ", user==" + interaction.user + ", betAmt==" + betAmount);
         var game_multiplier = 0;
         if (playType == "rock") {
@@ -37,7 +35,6 @@ module.exports = async (interaction, user) => {
             game_multiplier = (opp == "📃") ? 1 : ((opp == "✂️") ? 0 : -1);
         }
         playType = (playType == "rock") ? "🪨" : ((playType == "scissors") ? "✂️" : "📃");
-        //console.log("ROSHAMBO: editing reply");
         await interaction.editReply({
             content: (
                 `Time for some old-fashioned roshambo! Rock, paper, or scissors? Pick one!

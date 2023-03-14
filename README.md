@@ -44,4 +44,4 @@ __BotCasino__
 
 __Miscellaneous__  
 `/gpr` *grass privileges revoked*  
-`/soursecode` *Links to this repository*
+`/sourcecode` *Links to this repository*

@@ -2,7 +2,7 @@
 
 ## A-Bot   
 ### Overview   
-A-Bot is a multi-purpose discord bot built with the University of Michigan EECS 370 course discord server in mind. Based on [zombbblob (github)](https://github.com/ToafdaLoaf/zombbblob)
+A-Bot is a multi-purpose discord bot built with the University of Michigan EECS 370 course discord server in mind. Adapted from [zombbblob (github)](https://github.com/ToafdaLoaf/zombbblob)
 
 __Features__  
 A-Bot features a number of features that are quite unique! These include:  

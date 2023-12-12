@@ -27,7 +27,7 @@ module.exports = {
         if (postNumber == null) {
             console.log(`User ${user.username} requested a link to the Piazza page.`);
             return {
-                content: "EECS 370 Piazza: <https://piazza.com/class/lbzf4r97cuj4kt>",
+                content: "EECS 370 Piazza: <https://eecs370.github.io/piazza>",
             }
         } else {
             console.log(`User ${user.username} requested a link to Piazza post #${postNumber}.`);

@@ -1,8 +1,8 @@
 
-const { MongoClient, MongoDB } = require('mongodb')
+// const { MongoClient, MongoDB } = require('mongodb')
 const { mongoURI, token, owners, roleMessage } = require('./config.json');
 const MONGODB_URI = mongoURI
-const mongoClient = new MongoClient(MONGODB_URI);
+// const mongoClient = new MongoClient(MONGODB_URI);
 
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
@@ -28,7 +28,7 @@ exports.studentRole = studentRole;
 exports.studentAlumRole = studentAlumRole;
 exports.reactionRoleChannel = reactionRoleChannel;
 exports.reactionRoleMessage = reactionRoleMessage;
-exports.mongoClient = mongoClient;
+exports.mongoClient = null;
 exports.gameId = gameId;
 
 process.on("SIGINT", () => process.exit(0));

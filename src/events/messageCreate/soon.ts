@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-module.exports = (message: Message) => {
+export default (message: Message) => {
     if ((message.content.toLowerCase().includes('when') || message.content.includes('soon')) &&
         (message.content.includes('exam') ||
             message.content.includes('score') ||
@@ -13,10 +13,10 @@ module.exports = (message: Message) => {
             message.content.includes('homework') ||
             message.content.includes('project') ||
             message.content.includes('lab'))) {
-        message.reply('Soon:tm:');
+        message.reply('Soon:tm:').catch(err => console.error('Failed to reply:', err));
         console.log(`The bot said \"Soon\" to ${message.author.username}.`);
     } else if (message.content.includes('when') && message.content.includes('sex')) {
-        message.reply("sorry pal, you're a CS major");
+        message.reply("sorry pal, you're a CS major").catch(err => console.error('Failed to reply:', err));
         console.log(`User ${message.author.username} solicited sex.`);
     }
 };

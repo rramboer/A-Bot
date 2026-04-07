@@ -2,11 +2,11 @@
   "name": "a-bot",
   "version": "1.0.0",
   "description": "Discord Bot",
+  "type": "module",
   "main": "index.js",
   "dependencies": {
     "discord.js": "^14.19.3",
-    "mongodb": "^6.16.0",
-    "wokcommands": "^2.1.0"
+    "mongodb": "^6.16.0"
   },
   "scripts": {
     "build": "tsc",
@@ -16,8 +16,11 @@
     "type": "git",
     "url": "git+https://github.com/rramboer/A-Bot.git"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "license": "MIT",
-  "packageManager": "yarn@4.9.1+sha512.f95ce356460e05be48d66401c1ae64ef84d163dd689964962c6888a9810865e39097a5e9de748876c2e0bf89b232d583c33982773e9903ae7a76257270986538",
+  "packageManager": "yarn@4.13.0",
   "devDependencies": {
     "@types/node": "^25.5.2",
     "typescript": "^6.0.2"

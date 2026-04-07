@@ -1,11 +1,9 @@
-import { CommandType } from "wokcommands";
-import { CommandUsage } from "wokcommands";
+import type { Command } from '../types.js';
 
-module.exports = {
+export default {
     description: "Ping",
-    type: CommandType.BOTH,
-    callback: async ({ user }: CommandUsage) => {
+    callback: async ({ user }) => {
         console.log(`User ${user.username} pinged the bot.`);
         return { content: "Pong!" };
     }
-};
+} satisfies Command;

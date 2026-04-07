@@ -1,6 +1,5 @@
-import { CommandType } from "wokcommands";
-import { CommandUsage } from "wokcommands";
-import { mongoClient } from "../..";
+import { mongoClient } from "../../index.js";
+import type { Command } from '../../types.js';
 
 const jobs = [
     { name: "Lottery Winner", earnings: 1000 },
@@ -47,10 +46,9 @@ const jobs = [
     { name: "Homeless Person", earnings: 1 },
 ];
 
-module.exports = {
+export default {
     description: "Pick this if you are unemployed! 😀",
-    type: CommandType.BOTH,
-    callback: async ({ user }: CommandUsage) => {
+    callback: async ({ user }) => {
         try {
             const db = await mongoClient.db('botCasino');
             const _user = await db.collection('users').findOne({ user_id: user.id });
@@ -61,7 +59,7 @@ module.exports = {
             }
             if (!_user.employed) {
                 const random_job = jobs[Math.floor(Math.random() * jobs.length)];
-                db.collection('users').updateOne({ user_id: user.id }, {
+                await db.collection('users').updateOne({ user_id: user.id }, {
                     $set: { employed: true, income: random_job.earnings },
                     $inc: { coins: random_job.earnings }
                 });
@@ -81,4 +79,4 @@ module.exports = {
             };
         }
     }
-};
+} satisfies Command;

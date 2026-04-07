@@ -1,5 +1,5 @@
-import { db } from "../db.js";
-import type { Command } from '../types.js';
+import { db } from "../../db.js";
+import type { Command } from '../../types.js';
 
 export default {
     description: "This removes you from the bot casino (cannot be undone!).",

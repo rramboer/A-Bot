@@ -1,4 +1,4 @@
-<img src="https://github.com/rramboer/A-Bot/blob/master/meta/background-crop.png?raw=true">
+<img src="https://github.com/rramboer/A-Bot/blob/master/assets/background-crop.png?raw=true">
 
 # A-Bot
 

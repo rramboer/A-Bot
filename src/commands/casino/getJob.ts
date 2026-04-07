@@ -1,4 +1,4 @@
-import { mongoClient } from "../../index.js";
+import { db } from "../../db.js";
 import type { Command } from '../../types.js';
 
 const jobs = [
@@ -50,19 +50,15 @@ export default {
     description: "Pick this if you are unemployed! 😀",
     callback: async ({ user }) => {
         try {
-            const db = await mongoClient.db('botCasino');
-            const _user = await db.collection('users').findOne({ user_id: user.id });
-            if (_user == undefined || _user == null) {
+            const _user = db.getUser(user.id);
+            if (!_user) {
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
                 };
             }
             if (!_user.employed) {
                 const random_job = jobs[Math.floor(Math.random() * jobs.length)];
-                await db.collection('users').updateOne({ user_id: user.id }, {
-                    $set: { employed: true, income: random_job.earnings },
-                    $inc: { coins: random_job.earnings }
-                });
+                db.setJob(user.id, random_job.earnings);
                 console.log(`User ${user.username} got a job as a ${random_job.name} making ${random_job.earnings}.`);
                 return {
                     content: "Congratulations! You've been hired as a " + random_job.name + "! You'll be earning an income of " + random_job.earnings + ", and a starting bonus of this amount has been added to your bank account. 🤑"

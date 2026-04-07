@@ -1,5 +1,5 @@
 import { ApplicationCommandOptionType } from 'discord.js';
-import { mongoClient } from "../../../index.js";
+import { db } from "../../../db.js";
 import type { Command } from '../../../types.js';
 
 export default {
@@ -15,9 +15,8 @@ export default {
     ],
     callback: async ({ user, args }) => {
         try {
-            const db = await mongoClient.db('botCasino');
-            const _user = await db.collection('users').findOne({ user_id: user.id });
-            if (_user == undefined || _user == null) {
+            const _user = db.getUser(user.id);
+            if (!_user) {
                 return { content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!" };
             }
             const betAmount = parseInt(args[0]);

@@ -1,5 +1,5 @@
 import { Interaction } from 'discord.js';
-import { mongoClient } from "../../index.js";
+import { db } from "../../db.js";
 import { setTimeout as wait } from 'node:timers/promises';
 
 export default async (interaction: Interaction) => {
@@ -14,8 +14,7 @@ export default async (interaction: Interaction) => {
     if (!parsed.call) return; // Not a coinflip interaction
 
     try {
-        const db = mongoClient.db('botCasino');
-        const _user = await db.collection('users').findOne({ user_id: interaction.user.id });
+        const _user = db.getUser(interaction.user.id);
         await interaction.deferUpdate();
         await wait(100);
         const { call, betAmount, user } = parsed;
@@ -28,7 +27,7 @@ export default async (interaction: Interaction) => {
         } else {
             final_message = `Correct, ${call}! ${interaction.user.username} wins their bet amount of ${betAmount}! 🥳💃🎉`;
         }
-        await db.collection('users').updateOne({ user_id: interaction.user.id }, { $inc: { coins: game_multiplier * betAmount } });
+        db.addCoins(interaction.user.id, game_multiplier * betAmount);
         await wait(1000);
         await interaction.editReply({
             content: (

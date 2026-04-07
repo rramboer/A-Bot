@@ -1,5 +1,5 @@
 import { ApplicationCommandOptionType, TextChannel } from "discord.js";
-import { mongoClient } from "../../../index.js";
+import { db } from "../../../db.js";
 import { setTimeout as wait } from 'node:timers/promises';
 import type { Command } from '../../../types.js';
 
@@ -21,8 +21,7 @@ export default {
     callback: async ({ args, user, client, channel, interaction }) => {
         if (!channel) return { content: 'This command can only be used in a server channel.' };
         try {
-            const db = mongoClient.db('botCasino');
-            const _user = await db.collection('users').findOne({ user_id: user.id });
+            const _user = db.getUser(user.id);
             if (!_user) {
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
@@ -61,18 +60,18 @@ export default {
             if ((player[0] + player[1]) > (opp[0] + opp[1])) {
                 if (player[0] == player[1]) {
                     if (player[0] == 6) {
-                        await db.collection('users').updateOne({ user_id: user.id }, { $inc: { coins: betAmount * 4 } });
+                        db.addCoins(user.id, betAmount * 4);
                         await textChannel.send("Miraculous 🍀! You win 4x your bet, gaining " + (betAmount * 4) + " coins!");
                     } else {
-                        await db.collection('users').updateOne({ user_id: user.id }, { $inc: { coins: betAmount * 2 } });
+                        db.addCoins(user.id, betAmount * 2);
                         await textChannel.send("Incredible 🤯! You win double your bet, gaining " + (betAmount * 2) + " coins!");
                     }
                 } else {
-                    await db.collection('users').updateOne({ user_id: user.id }, { $inc: { coins: betAmount } });
+                    db.addCoins(user.id, betAmount);
                     await textChannel.send("Nice 🤯! You win your bet amount, gaining " + (betAmount) + " coins!");
                 }
             } else if ((player[0] + player[1]) < (opp[0] + opp[1])) {
-                await db.collection('users').updateOne({ user_id: user.id }, { $inc: { coins: betAmount * -1 } });
+                db.addCoins(user.id, betAmount * -1);
                 await textChannel.send(`😖 Your opponent won! You lose ${betAmount} coins! Sorry. 😵`);
             } else {
                 await textChannel.send("😲 A tie! You get your bet back.");

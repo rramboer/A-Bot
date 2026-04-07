@@ -17,7 +17,6 @@ A multi-purpose Discord bot built with inspiration from the University of Michig
 
 - [Node.js](https://nodejs.org/) >= 22
 - [Yarn](https://yarnpkg.com/) 4.x
-- A [MongoDB](https://www.mongodb.com/) cluster
 
 ### Installation
 
@@ -31,7 +30,6 @@ Create a `config.json` in the project root:
 {
   "token": "your-discord-bot-token",
   "owners": ["your-discord-user-id"],
-  "mongoURI": "your-mongodb-connection-string",
   "roleMessage": {
     "channel": "channel-id",
     "message": "message-id"

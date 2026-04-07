@@ -1,5 +1,6 @@
 import { Interaction } from 'discord.js';
-import { mongoClient, gameId } from "../../index.js";
+import { db } from "../../db.js";
+import { gameId } from "../../index.js";
 import { setTimeout as wait } from 'node:timers/promises';
 
 function getRandomSelection() {
@@ -21,8 +22,7 @@ export default async (interaction: Interaction) => {
     try {
         await interaction.deferUpdate();
 
-        const db = mongoClient.db('botCasino');
-        const _user = await db.collection('users').findOne({ user_id: interaction.user.id });
+        const _user = db.getUser(interaction.user.id);
         const opp = getRandomSelection();
         await wait(100);
         let playType = data.playType;
@@ -50,12 +50,12 @@ export default async (interaction: Interaction) => {
         } else {
             final_message = `Victory! ${interaction.user.username} wins their bet amount of ${betAmount}! 🥳💃🎉`;
         }
+        db.addCoins(interaction.user.id, game_multiplier * betAmount);
         await wait(1000);
         await interaction.editReply({
             content: `Time for some old-fashioned roshambo! Rock, paper, or scissors? Pick one!\nYou chose ${playType}\nYour opponent chose ${opp}`,
             components: []
         });
-        await db.collection('users').updateOne({ user_id: interaction.user.id }, { $inc: { coins: game_multiplier * betAmount } });
         await wait(1000);
         await interaction.editReply({
             content: `Time for some old-fashioned roshambo! Rock, paper, or scissors? Pick one!\nYou chose ${playType}\nYour opponent chose ${opp}\n${final_message}`,

@@ -1,4 +1,4 @@
-import { mongoClient } from "../../index.js";
+import { db } from "../../db.js";
 import type { Command } from '../../types.js';
 
 const WORK_COOLDOWN_MS = 3600000; // 1 hour
@@ -7,9 +7,7 @@ export default {
     description: "Go to work! Make some money.",
     callback: async ({ user }) => {
         try {
-            const db = mongoClient.db('botCasino');
-            const users = db.collection('users');
-            const _user = await users.findOne({ user_id: user.id });
+            const _user = db.getUser(user.id);
             if (!_user) {
                 return {
                     content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!"
@@ -21,8 +19,7 @@ export default {
                 };
             }
             const now = Date.now();
-            const lastWorked = _user.lastWorked ?? 0;
-            const elapsed = now - lastWorked;
+            const elapsed = now - _user.lastWorked;
             if (elapsed < WORK_COOLDOWN_MS) {
                 const left = (WORK_COOLDOWN_MS - elapsed) / 1000;
                 const timeStr = left > 60
@@ -32,14 +29,10 @@ export default {
                     content: `You are already working. Please wait ${timeStr}.`
                 };
             }
-            const earnings = _user.income;
-            await users.updateOne({ user_id: user.id }, {
-                $inc: { coins: earnings },
-                $set: { lastWorked: now }
-            });
-            console.log(`User ${user.username} worked and earned ${earnings} coins.`);
+            db.recordWork(user.id, _user.income, now);
+            console.log(`User ${user.username} worked and earned ${_user.income} coins.`);
             return {
-                content: "Cha-Ching! You just claimed a paycheck of " + earnings + " coins! Come back in an hour for another " + earnings + " coins! 🤑💰🪙"
+                content: "Cha-Ching! You just claimed a paycheck of " + _user.income + " coins! Come back in an hour for another " + _user.income + " coins! 🤑💰🪙"
             };
         } catch (e) {
             console.error('Error in work command:', e);

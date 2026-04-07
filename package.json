@@ -5,12 +5,14 @@
   "type": "module",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^14.19.3",
-    "mongodb": "^6.16.0"
+    "better-sqlite3": "^12.8.0",
+    "discord.js": "^14.19.3"
   },
   "scripts": {
+    "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "prod": "yarn build && yarn start"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,9 @@
   "license": "MIT",
   "packageManager": "yarn@4.13.0",
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.5.2",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.2"
   }
 }

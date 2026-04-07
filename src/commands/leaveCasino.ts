@@ -1,19 +1,18 @@
-import { mongoClient } from "../index.js";
+import { db } from "../db.js";
 import type { Command } from '../types.js';
 
 export default {
     description: "This removes you from the bot casino (cannot be undone!).",
     callback: async ({ user }) => {
         try {
-            const db = mongoClient.db('botCasino');
-            const _user = await db.collection('users').findOne({ user_id: user.id });
+            const _user = db.getUser(user.id);
             if (!_user) {
                 return {
                     content: "You're not even in the casino. Why are you trying to leave? Rude..."
                 };
             }
             console.log(`Removing user ${user.username} from the casino.`);
-            await db.collection('users').deleteOne({ user_id: user.id });
+            db.deleteUser(user.id);
             return {
                 content: "You have left the casino. We'll miss you! 🥺😥😭",
             };

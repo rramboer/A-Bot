@@ -1,8 +1,8 @@
 import { Client, GatewayIntentBits, Partials, REST, Routes, Collection } from 'discord.js';
-import { MongoClient } from 'mongodb';
 import { fileURLToPath, pathToFileURL } from 'url';
 import path from 'path';
 import fs from 'fs';
+import { db } from './db.js';
 import type { Command } from './types.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,7 +16,7 @@ try {
     console.error(err);
     process.exit(1);
 }
-const { token, owners, roleMessage, mongoURI } = config;
+const { token, owners, roleMessage } = config;
 
 export const reactionRoleChannel = roleMessage.channel;
 export const reactionRoleMessage = roleMessage.message;
@@ -29,10 +29,14 @@ export const gameId = {
 
 export const studentRole = '1053544751439290448';
 export const studentAlumRole = '927680207505211443';
-export let mongoClient: MongoClient;
 
-process.on("SIGINT", () => process.exit(0));
-process.on("SIGTERM", () => process.exit(0));
+function shutdown() {
+    console.log('Shutting down...');
+    db.close();
+    process.exit(0);
+}
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);
 
 const client = new Client({
     intents: [
@@ -119,16 +123,6 @@ client.on('interactionCreate', async (interaction) => {
 
 client.once('ready', async (c) => {
     console.log(`Bot is online! Logged in as ${c.user.username}...`);
-
-    // Connect to MongoDB
-    // try {
-    //     mongoClient = new MongoClient(mongoURI);
-    //     await mongoClient.connect();
-    //     console.log('Connected to MongoDB.');
-    // } catch (err) {
-    //     console.error('FATAL: Failed to connect to MongoDB:', err);
-    //     process.exit(1);
-    // }
 
     // Load commands
     const commandFiles = getFiles(path.join(__dirname, 'commands'));

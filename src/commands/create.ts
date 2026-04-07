@@ -1,0 +1,48 @@
+import { ChannelType } from "discord.js";
+import { CommandType } from "wokcommands";
+import { CommandUsage } from "wokcommands";
+
+const semesters: Record<string, string> = {
+    f: 'Fall',
+    s: 'Spring/Summer',
+    w: 'Winter'
+};
+
+module.exports = {
+    description: 'Creates a new semester category and channels',
+    type: CommandType.BOTH,
+    minArgs: 1,
+    maxArgs: 1,
+    options: [
+        {
+            name: 'semester-year',
+            description: 'Provide [F/S/W][Last two digits of year]',
+            required: true,
+            type: 3,
+        }
+    ],
+    expectedArgs: "<[F/S/W][Last two digits of year]>",
+    testOnly: false,
+    callback: async ({ user, guild, text, interaction: msgInt }: CommandUsage) => {
+        const semester = text.toLowerCase();
+        if (semester.startsWith('f') || semester.startsWith('s') || semester.startsWith('w')) {
+            let categoryName = semesters[semester.at(0)!];
+            let year = semester.slice(1);
+            year = year.padStart(4, '20');
+            categoryName = categoryName + ` ${year}`;
+            const category = guild!.channels.create({ name: categoryName, type: ChannelType.GuildCategory });
+            let categoryChannel: any;
+            category.then(c => { categoryChannel = c; c.setPosition(2) });
+            const channels = ['general', 'random', 'homework', 'projects', 'exams'];
+            for (let i = 0; i < channels.length; ++i) {
+                guild!.channels.create({ name: channels[i], type: ChannelType.GuildText })
+                    .then(channel => { channel.setParent(categoryChannel) })
+                    .catch(() => { msgInt!.reply("Unable to create category"); return; });
+            }
+            msgInt!.reply(`${categoryName} successfully created`);
+            console.log(`User ${user.username} created ${categoryName} category.`);
+        } else {
+            msgInt!.reply('Invalid semester format');
+        }
+    }
+};

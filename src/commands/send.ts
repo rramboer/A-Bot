@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionType, TextChannel } from "discord.js";
+import { ApplicationCommandOptionType, ChannelType, TextChannel } from "discord.js";
 import type { Command } from '../types.js';
 
 export default {
@@ -8,7 +8,8 @@ export default {
             name: 'channel',
             description: 'The channel to be sent in',
             required: true,
-            type: ApplicationCommandOptionType.String,
+            type: ApplicationCommandOptionType.Channel,
+            channelTypes: [ChannelType.GuildText],
         },
         {
             name: 'message',
@@ -17,17 +18,19 @@ export default {
             type: ApplicationCommandOptionType.String,
         }
     ],
-    callback: async ({ user, guild, args }) => {
+    callback: async ({ user, guild, args, interaction }) => {
         if (!guild) return { content: 'This command can only be used in a server.' };
         try {
-            const channelId = args[0].slice(2, args[0].length - 1);
-            const c = await guild.channels.fetch(channelId);
-            await (c as TextChannel).send(args[1]);
-            console.log(`User ${user.username} made the bot send a message in \#${(c as TextChannel).name}.`);
-            return { content: `Message sent in ${args[0]}` };
+            const channel = await guild.channels.fetch(args[0]);
+            if (!channel || !channel.isTextBased()) {
+                return { content: 'That channel is not a text channel.' };
+            }
+            await (channel as TextChannel).send(args[1]);
+            console.log(`User ${user.username} made the bot send a message in #${channel.name}.`);
+            return { content: `Message sent in <#${channel.id}>` };
         } catch (e) {
             console.error('Error in send command:', e);
-            return { content: 'Unable to send message. Did you tag the channel with `#channel`?' };
+            return { content: 'Unable to send message.' };
         }
     }
 } satisfies Command;

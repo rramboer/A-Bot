@@ -121,14 +121,14 @@ client.once('ready', async (c) => {
     console.log(`Bot is online! Logged in as ${c.user.username}...`);
 
     // Connect to MongoDB
-    try {
-        mongoClient = new MongoClient(mongoURI);
-        await mongoClient.connect();
-        console.log('Connected to MongoDB.');
-    } catch (err) {
-        console.error('FATAL: Failed to connect to MongoDB:', err);
-        process.exit(1);
-    }
+    // try {
+    //     mongoClient = new MongoClient(mongoURI);
+    //     await mongoClient.connect();
+    //     console.log('Connected to MongoDB.');
+    // } catch (err) {
+    //     console.error('FATAL: Failed to connect to MongoDB:', err);
+    //     process.exit(1);
+    // }
 
     // Load commands
     const commandFiles = getFiles(path.join(__dirname, 'commands'));

@@ -12,7 +12,8 @@
     "dev": "tsx watch src/index.ts",
     "build": "rm -rf dist && tsc",
     "start": "node dist/index.js",
-    "prod": "yarn build && yarn start"
+    "prod": "yarn build && yarn start",
+    "db:reset": "rm -f db/casino.db && echo 'Database reset.'"
   },
   "repository": {
     "type": "git",

@@ -1,22 +1,25 @@
-import { CommandType } from "wokcommands";
-import { CommandUsage } from "wokcommands";
-import { mongoClient } from "..";
+import { mongoClient } from "../index.js";
+import type { Command } from '../types.js';
 
-module.exports = {
+export default {
     description: "This removes you from the bot casino (cannot be undone!).",
-    type: CommandType.BOTH,
-    callback: async ({ user }: CommandUsage) => {
-        const db = await mongoClient.db('botCasino');
-        const _user = await db.collection('users').findOne({ user_id: user.id });
-        if (_user == undefined || _user == null) {
+    callback: async ({ user }) => {
+        try {
+            const db = mongoClient.db('botCasino');
+            const _user = await db.collection('users').findOne({ user_id: user.id });
+            if (!_user) {
+                return {
+                    content: "You're not even in the casino. Why are you trying to leave? Rude..."
+                };
+            }
+            console.log(`Removing user ${user.username} from the casino.`);
+            await db.collection('users').deleteOne({ user_id: user.id });
             return {
-                content: "You're not even in the casino. Why are you trying to leave? Rude..."
+                content: "You have left the casino. We'll miss you! 🥺😥😭",
             };
+        } catch (e) {
+            console.error('Error in leaveCasino command:', e);
+            return { content: "☠️ Oops! Something went wrong on my end." };
         }
-        console.log(`Removing user ${user.username} from the casino.`);
-        await db.collection('users').deleteOne({ user_id: user.id });
-        return {
-            content: "You have left the casino. We'll miss you! 🥺😥😭",
-        };
     }
-};
+} satisfies Command;

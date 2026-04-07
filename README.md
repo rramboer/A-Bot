@@ -1,47 +1,91 @@
-<img src="https://github.com/rramboer/A-Bot/blob/master/meta/background-crop.png?raw=true">  
+<img src="https://github.com/rramboer/A-Bot/blob/master/meta/background-crop.png?raw=true">
 
-## A-Bot   
-### Overview   
-A-Bot is a multi-purpose discord bot built with the University of Michigan EECS 370 course discord server in mind. Adapted from [zombbblob (github)](https://github.com/ToafdaLoaf/zombbblob)
+# A-Bot
 
-__Features__  
-A-Bot features a number of features that are quite unique! These include:  
-- Server management  
-- BotCasino and other entertainment features  
-- Whatever other random commands you'd probably expect a general-purpose bot to do  
+A multi-purpose Discord bot built with inspiration from the University of Michigan EECS 370 course Discord server. Adapted from [zombbblob](https://github.com/ToafdaLoaf/zombbblob).
 
-### Functionality and setup
-A-Bot runs using a MongoDB database and can be hosted however you like. To set it up, you will need to create your own MongoDB cluster and create a collection called "botCasino". Follow MongoDB's connection instructions and add your connection string to `config.json`.
+## Features
 
-### Commands List
+- **BotCasino** — join a virtual casino, get a job, earn coins, and gamble them away
+- **Server management** — send messages, reply, react, create semester channels, and generate invite links as the bot
+- **EECS 370 utilities** — quick links to course notes
+- **Reaction roles** — automatic role assignment via message reactions
 
-See commands listed below. A-Bot is an open-source work-in-progress, so contributions are welcome!
+## Setup
 
-__General Use__  
-`/help` *prints this list*
+### Prerequisites
 
-__EECS370__  
-`/piazza` *DMs user with link to class piazza*  
-`/piazza <number>` *Generates and posts link to piazza post with given number*  
-`/eecs370` *Sends link to eecs370.github.io*
+- [Node.js](https://nodejs.org/) >= 22
+- [Yarn](https://yarnpkg.com/) 4.x
+- A [MongoDB](https://www.mongodb.com/) cluster
 
-__Administration__  
-`/send`  
-`/reply`  
-`/react`  
-`/invite <total_invites>` *generates invite link with finite specified invites*
+### Installation
 
+```bash
+yarn install
+```
 
-__BotCasino__  
-`/joincasino`  
-`/leavecasino`  
-`/getjob`  
-`/work`  
-`/coins`  
-`/dice <bet_amount>`  
-`/roshambo <bet_amount>`  
-`/coinflip <bet_amount>`
+Create a `config.json` in the project root:
 
-__Miscellaneous__  
-`/gpr` *grass privileges revoked*  
-`/sourcecode` *Links to this repository*
+```json
+{
+  "token": "your-discord-bot-token",
+  "owners": ["your-discord-user-id"],
+  "mongoURI": "your-mongodb-connection-string",
+  "roleMessage": {
+    "channel": "channel-id",
+    "message": "message-id"
+  }
+}
+```
+
+### Build & Run
+
+```bash
+yarn build
+yarn start
+```
+
+## Commands
+
+### General
+
+| Command | Description |
+|---------|-------------|
+| `/help` | Prints the help menu |
+| `/sourcecode` | Links to this repository |
+| `/gpr` | Grass privileges revoked |
+
+### EECS 370
+
+| Command | Description |
+|---------|-------------|
+| `/coursenotes` | Link to the unofficial course notes |
+
+### Administration
+
+| Command | Description |
+|---------|-------------|
+| `/send <channel> <message>` | Send a message as the bot |
+| `/reply <message_link> <reply_text>` | Reply to a message as the bot |
+| `/react <message_link> <emoji>` | React to a message as the bot |
+| `/invite [n]` | Generate an invite link with optional limited uses |
+| `/create <semester-year>` | Create a semester category with channels (e.g. `F23`) |
+
+### BotCasino
+
+| Command | Description |
+|---------|-------------|
+| `/joincasino` | Join the casino |
+| `/leavecasino` | Leave the casino (cannot be undone) |
+| `/getjob` | Get assigned a random job for coin income |
+| `/work` | Earn your hourly paycheck (1h cooldown) |
+| `/bonus` | Claim a one-time starting bonus |
+| `/coins [user]` | Check your or another user's balance |
+| `/dice <bet>` | Roll dice against an opponent |
+| `/roshambo <bet>` | Play rock paper scissors |
+| `/coinflip <bet>` | Flip a coin, heads or tails |
+
+## Contributing
+
+A-Bot is open source — contributions are welcome!

@@ -1,17 +1,14 @@
-import { CommandType } from "wokcommands";
-import { CommandUsage } from "wokcommands";
 import { EmbedBuilder } from "discord.js";
+import type { Command } from '../types.js';
 
-module.exports = {
+export default {
     description: "Help",
-    type: CommandType.BOTH,
-    callback: async ({ user }: CommandUsage) => {
+    callback: async ({ user }) => {
         const helpCommands = [
             {
                 sectionTitle: "General",
                 commands: [
                     { name: "/help", description: "Prints this help message" },
-                    { name: "/piazza [postnumber]", description: "Prints a link to the piazza page or a specific post" },
                     { name: "/coursenotes", description: "Posts a link to the unofficial course notes" }
                 ]
             },
@@ -42,4 +39,4 @@ module.exports = {
         console.log(`User ${user.username} requested the help menu.`);
         return { embeds: [embed] };
     }
-};
+} satisfies Command;

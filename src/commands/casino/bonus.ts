@@ -1,11 +1,9 @@
-import { CommandType } from "wokcommands";
-import { CommandUsage } from "wokcommands";
-import { mongoClient } from "../..";
+import { mongoClient } from "../../index.js";
+import type { Command } from '../../types.js';
 
-module.exports = {
+export default {
     description: "Use this command to claim your bonus if it is available.",
-    type: CommandType.BOTH,
-    callback: async ({ user }: CommandUsage) => {
+    callback: async ({ user }) => {
         try {
             const db = await mongoClient.db('botCasino');
             const _user = await db.collection('users').findOne({ user_id: user.id });
@@ -18,14 +16,14 @@ module.exports = {
                 const bonus = Math.floor((Math.random() * 1000) + 500);
                 const new_coins = _user.coins + bonus;
                 if (isNaN(new_coins) || isNaN(_user.coins)) {
-                    db.collection('users').updateOne({ user_id: user.id }, {
-                        $set: { coins: new_coins, bonusAvailable: false },
+                    await db.collection('users').updateOne({ user_id: user.id }, {
+                        $set: { coins: 0, bonusAvailable: false },
                     });
                     return {
                         content: "😳 Oops! I deleted all of your coins lol (not a joke). Must've been a bit flip"
                     };
                 } else {
-                    db.collection('users').updateOne({ user_id: user.id }, {
+                    await db.collection('users').updateOne({ user_id: user.id }, {
                         $inc: { coins: bonus }, $set: { bonusAvailable: false }
                     });
                 }
@@ -45,4 +43,4 @@ module.exports = {
             };
         }
     }
-};
+} satisfies Command;

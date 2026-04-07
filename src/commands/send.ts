@@ -1,12 +1,8 @@
 import { ApplicationCommandOptionType, TextChannel } from "discord.js";
-import { CommandType } from "wokcommands";
-import { CommandUsage } from "wokcommands";
+import type { Command } from '../types.js';
 
-module.exports = {
+export default {
     description: 'Sends a message as the bot in the specified channel',
-    type: CommandType.BOTH,
-    minArgs: 2,
-    maxArgs: 2,
     options: [
         {
             name: 'channel',
@@ -21,16 +17,17 @@ module.exports = {
             type: ApplicationCommandOptionType.String,
         }
     ],
-    expectedArgs: "<channel> <message>",
-    testOnly: false,
-    callback: async ({ user, guild, args, interaction: msgInt }: CommandUsage) => {
-        const channel = args[0].slice(2, args[0].length - 1);
-        guild!.channels.fetch(channel)
-            .then(async (c) => {
-                (c as TextChannel).send(args[1]);
-                await msgInt!.reply(`Message sent in ${args[0]}`);
-                console.log(`User ${user.username} made the bot send a message in \#${(c as TextChannel).name}.`);
-            })
-            .catch(() => { msgInt!.reply(`Unable to send message. Did you tag the channel with \`#channel\`?`) });
+    callback: async ({ user, guild, args }) => {
+        if (!guild) return { content: 'This command can only be used in a server.' };
+        try {
+            const channelId = args[0].slice(2, args[0].length - 1);
+            const c = await guild.channels.fetch(channelId);
+            await (c as TextChannel).send(args[1]);
+            console.log(`User ${user.username} made the bot send a message in \#${(c as TextChannel).name}.`);
+            return { content: `Message sent in ${args[0]}` };
+        } catch (e) {
+            console.error('Error in send command:', e);
+            return { content: 'Unable to send message. Did you tag the channel with `#channel`?' };
+        }
     }
-};
+} satisfies Command;

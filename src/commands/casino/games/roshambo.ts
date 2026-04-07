@@ -1,22 +1,19 @@
-import { CommandType, CooldownTypes } from "wokcommands";
-import { CommandUsage } from "wokcommands";
 import { ApplicationCommandOptionType } from 'discord.js';
-import { mongoClient, gameId } from "../../..";
+import { mongoClient, gameId } from "../../../index.js";
+import type { Command } from '../../../types.js';
 
-module.exports = {
+export default {
     description: "Play rock paper scissors! Win your bet amount by beating your opponent.",
-    type: CommandType.BOTH,
-    cooldowns: {
-        errorMessage: "Please wait {TIME} before playing again. Sorry about that!",
-        type: CooldownTypes.perUser,
-        duration: "30 s"
-    },
-    expectedArgs: "<bet>",
-    minArgs: 1,
-    maxArgs: 1,
-    aliases: ["rps"],
-    correctSyntax: "To run the command, specify the amount of your bet. Must be an integer value.",
-    callback: async ({ user, args }: CommandUsage) => {
+    cooldown: 30000,
+    options: [
+        {
+            name: 'bet',
+            description: 'The amount of coins to bet',
+            required: true,
+            type: ApplicationCommandOptionType.Integer,
+        }
+    ],
+    callback: async ({ user, args }) => {
         try {
             const db = await mongoClient.db('botCasino');
             const _user = await db.collection('users').findOne({ user_id: user.id });
@@ -24,11 +21,11 @@ module.exports = {
                 return { content: "To play, you need to join the casino first. Do so by running the `/joincasino` command!" };
             }
             const betAmount = parseInt(args[0]);
-            if (betAmount < 0) {
-                return { content: "You can't bet an amount less than zero. Sorry! I don't make the rules." };
-            }
             if (isNaN(betAmount)) {
                 return { content: "Inappropriate" };
+            }
+            if (betAmount <= 0) {
+                return { content: "You need to bet at least 1 coin. Sorry! I don't make the rules." };
             }
             if (betAmount > _user.coins) {
                 return { content: "Sorry! You don't have enough coins to place this bet. Did you try having more money?" };
@@ -64,4 +61,4 @@ module.exports = {
             return { content: "Uh oh! There was an error. Try again. 🤕" };
         }
     }
-};
+} satisfies Command;

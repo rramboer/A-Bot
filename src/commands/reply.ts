@@ -1,12 +1,8 @@
 import { ApplicationCommandOptionType, TextChannel } from "discord.js";
-import { CommandType } from "wokcommands";
-import { CommandUsage } from "wokcommands";
+import type { Command } from '../types.js';
 
-module.exports = {
+export default {
     description: 'Replies to the specified message as the bot',
-    type: CommandType.BOTH,
-    minArgs: 2,
-    maxArgs: 2,
     options: [
         {
             name: 'message_link',
@@ -21,24 +17,21 @@ module.exports = {
             type: ApplicationCommandOptionType.String,
         }
     ],
-    expectedArgs: "<message link> <reply text>",
-    testOnly: false,
-    callback: async ({ user, guild, args, interaction: msgInt }: CommandUsage) => {
+    callback: async ({ user, guild, args }) => {
+        if (!guild) return { content: 'This command can only be used in a server.' };
         const IDs = args[0].split('/');
         if (IDs.length != 7) {
-            msgInt!.reply("Please make sure you are providing a valid message link.");
-            return;
+            return { content: 'Please make sure you are providing a valid message link.' };
         }
-        guild!.channels.fetch(IDs[5]).then(c => {
-            (c as TextChannel).messages.fetch(IDs[6]).then(async m => {
-                await m.reply(args[1]).then(() => {
-                    msgInt!.reply(`Replied to ${m.url}`);
-                    console.log(`User ${user.username} made the bot reply in \#${(c as TextChannel).name}.`);
-                })
-                    .catch(() => { msgInt!.reply(`Unable to reply to message.`); });
-            })
-                .catch(() => { msgInt!.reply(`Unable to find message. Please verify that the message link is valid.`); });
-        })
-            .catch(() => { msgInt!.reply(`Unable to reply to message. Please verify that the message link is valid.`); });
+        try {
+            const channel = await guild.channels.fetch(IDs[5]);
+            const message = await (channel as TextChannel).messages.fetch(IDs[6]);
+            await message.reply(args[1]);
+            console.log(`User ${user.username} made the bot reply in \#${(channel as TextChannel).name}.`);
+            return { content: `Replied to ${message.url}` };
+        } catch (e) {
+            console.error('Error in reply command:', e);
+            return { content: 'Unable to reply to message. Please verify that the message link is valid.' };
+        }
     }
-};
+} satisfies Command;

@@ -1,4 +1,4 @@
-import { ChannelType } from "discord.js";
+import { ChannelType, PermissionFlagsBits } from "discord.js";
 import type { Command } from '../types.js';
 
 const semesters: Record<string, string> = {
@@ -9,6 +9,7 @@ const semesters: Record<string, string> = {
 
 export default {
     description: 'Creates a new semester category and channels',
+    defaultMemberPermissions: PermissionFlagsBits.Administrator,
     options: [
         {
             name: 'semester-year',

@@ -1,8 +1,9 @@
-import { ApplicationCommandOptionType, TextChannel } from "discord.js";
+import { ApplicationCommandOptionType, PermissionFlagsBits, TextChannel } from "discord.js";
 import type { Command } from '../types.js';
 
 export default {
     description: 'Reacts to a message with the specified emoji',
+    defaultMemberPermissions: PermissionFlagsBits.Administrator,
     options: [
         {
             name: 'message_link',

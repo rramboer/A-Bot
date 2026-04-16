@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, Client, Guild, User, TextBasedChannel, ApplicationCommandOptionData } from 'discord.js';
+import { ChatInputCommandInteraction, Client, Guild, User, TextBasedChannel, ApplicationCommandOptionData, PermissionResolvable } from 'discord.js';
 
 export interface CommandCallbackOptions {
     client: Client;
@@ -14,5 +14,6 @@ export interface Command {
     description: string;
     options?: ApplicationCommandOptionData[];
     cooldown?: number;
+    defaultMemberPermissions?: PermissionResolvable;
     callback: (options: CommandCallbackOptions) => Promise<any>;
 }

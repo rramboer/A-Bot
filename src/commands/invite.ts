@@ -1,8 +1,9 @@
-import { ApplicationCommandOptionType } from "discord.js";
+import { ApplicationCommandOptionType, PermissionFlagsBits } from "discord.js";
 import type { Command } from '../types.js';
 
 export default {
     description: 'Creates an invite link with a specified number of uses',
+    defaultMemberPermissions: PermissionFlagsBits.Administrator,
     options: [
         {
             name: 'n',

@@ -1,8 +1,9 @@
-import { ApplicationCommandOptionType, ChannelType, TextChannel } from "discord.js";
+import { ApplicationCommandOptionType, ChannelType, PermissionFlagsBits, TextChannel } from "discord.js";
 import type { Command } from '../types.js';
 
 export default {
     description: 'Sends a message as the bot in the specified channel',
+    defaultMemberPermissions: PermissionFlagsBits.Administrator,
     options: [
         {
             name: 'channel',

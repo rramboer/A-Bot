@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, Partials, REST, Routes, Collection } from 'discord.js';
+import { Client, GatewayIntentBits, Partials, REST, Routes, Collection, PermissionsBitField } from 'discord.js';
 import { fileURLToPath, pathToFileURL } from 'url';
 import path from 'path';
 import fs from 'fs';
@@ -139,6 +139,9 @@ client.once('ready', async (c) => {
                 name,
                 description: command.description,
                 options: command.options ?? [],
+                ...(command.defaultMemberPermissions !== undefined && {
+                    default_member_permissions: String(PermissionsBitField.resolve(command.defaultMemberPermissions)),
+                }),
             });
         } catch (err) {
             console.error(`Failed to load command from ${file}:`, err);

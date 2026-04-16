@@ -24,17 +24,22 @@ A multi-purpose Discord bot built with inspiration from the University of Michig
 yarn install
 ```
 
-Create a `config.json` in the project root:
+Copy `.env.example` to `.env` and fill in your values:
 
-```json
-{
-  "token": "your-discord-bot-token",
-  "owners": ["your-discord-user-id"],
-  "roleMessage": {
-    "channel": "channel-id",
-    "message": "message-id"
-  }
-}
+```bash
+cp .env.example .env
+```
+
+```
+DISCORD_TOKEN=your-discord-bot-token
+ROLE_MESSAGE_CHANNEL=channel-id-for-reaction-roles
+ROLE_MESSAGE_ID=message-id-for-reaction-roles
+```
+
+### Development
+
+```bash
+yarn dev
 ```
 
 ### Build & Run
@@ -42,6 +47,12 @@ Create a `config.json` in the project root:
 ```bash
 yarn build
 yarn start
+```
+
+### Tests
+
+```bash
+yarn test
 ```
 
 ## Commands
@@ -60,14 +71,19 @@ yarn start
 |---------|-------------|
 | `/coursenotes` | Link to the unofficial course notes |
 
-### Administration
+### Server
+
+| Command | Description |
+|---------|-------------|
+| `/invite [n]` | Generate an invite link with optional limited uses |
+
+### Administration (requires Administrator permission)
 
 | Command | Description |
 |---------|-------------|
 | `/send <channel> <message>` | Send a message as the bot |
 | `/reply <message_link> <reply_text>` | Reply to a message as the bot |
 | `/react <message_link> <emoji>` | React to a message as the bot |
-| `/invite [n]` | Generate an invite link with optional limited uses |
 | `/create <semester-year>` | Create a semester category with channels (e.g. `F23`) |
 
 ### BotCasino

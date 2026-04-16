@@ -8,18 +8,14 @@ import type { Command } from './types.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let config: any;
-try {
-    config = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'config.json'), 'utf-8'));
-} catch (err) {
-    console.error('FATAL: Could not read config.json. See README.md for setup instructions.');
-    console.error(err);
+const token = process.env.DISCORD_TOKEN;
+export const reactionRoleChannel = process.env.ROLE_MESSAGE_CHANNEL;
+export const reactionRoleMessage = process.env.ROLE_MESSAGE_ID;
+
+if (!token) {
+    console.error('FATAL: DISCORD_TOKEN is not set. See .env.example for required variables.');
     process.exit(1);
 }
-const { token, owners, roleMessage } = config;
-
-export const reactionRoleChannel = roleMessage.channel;
-export const reactionRoleMessage = roleMessage.message;
 
 export const gameId = {
     roshambo: "d7d3",
@@ -181,13 +177,13 @@ client.once('ready', async (c) => {
         status: 'online',
     });
 
-    const roleChannel = client.channels.cache.get(roleMessage.channel);
+    const roleChannel = client.channels.cache.get(reactionRoleChannel!);
     if (roleChannel?.isTextBased()) {
-        roleChannel.messages.fetch(roleMessage.message).catch(err => {
+        roleChannel.messages.fetch(reactionRoleMessage!).catch(err => {
             console.error('Failed to fetch role message:', err);
         });
     } else {
-        console.warn(`Role message channel ${roleMessage.channel} not found in cache.`);
+        console.warn(`Role message channel ${reactionRoleChannel} not found in cache.`);
     }
 });
 

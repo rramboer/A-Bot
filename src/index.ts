@@ -76,19 +76,21 @@ client.on('interactionCreate', async (interaction) => {
         const now = Date.now();
         const userId = interaction.user.id;
 
+        for (const [id, ts] of timestamps) {
+            if (now >= ts + command.cooldown) timestamps.delete(id);
+        }
+
         if (timestamps.has(userId)) {
             const expiration = timestamps.get(userId)! + command.cooldown;
-            if (now < expiration) {
-                const left = (expiration - now) / 1000;
-                const timeStr = left > 60
-                    ? `${Math.ceil(left / 60)} minute(s)`
-                    : `${Math.ceil(left)} second(s)`;
-                await interaction.reply({
-                    content: `Please wait ${timeStr} before using this command again.`,
-                    ephemeral: true
-                });
-                return;
-            }
+            const left = (expiration - now) / 1000;
+            const timeStr = left > 60
+                ? `${Math.ceil(left / 60)} minute(s)`
+                : `${Math.ceil(left)} second(s)`;
+            await interaction.reply({
+                content: `Please wait ${timeStr} before using this command again.`,
+                ephemeral: true
+            });
+            return;
         }
         timestamps.set(userId, now);
     }

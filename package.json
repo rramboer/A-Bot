@@ -13,7 +13,8 @@
     "build": "rm -rf dist && tsc",
     "start": "node --env-file=.env dist/index.js",
     "prod": "yarn build && yarn start",
-    "db:reset": "rm -f db/casino.db && echo 'Database reset.'"
+    "db:reset": "rm -f db/casino.db && echo 'Database reset.'",
+    "test": "tsx --test test/**/*.test.ts"
   },
   "repository": {
     "type": "git",

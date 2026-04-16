@@ -16,7 +16,7 @@ export interface CasinoUser {
     lastWorked: number;
 }
 
-class CasinoDB {
+export class CasinoDB {
     private db!: Database.Database;
     private stmts!: {
         getUser: Database.Statement;
@@ -31,9 +31,10 @@ class CasinoDB {
 
     constructor(dbPath?: string) {
         try {
-            const dbDir = path.join(__dirname, '..', 'db');
-            fs.mkdirSync(dbDir, { recursive: true });
-            const resolvedPath = dbPath ?? path.join(dbDir, 'casino.db');
+            const resolvedPath = dbPath ?? path.join(__dirname, '..', 'db', 'casino.db');
+            if (!dbPath) {
+                fs.mkdirSync(path.join(__dirname, '..', 'db'), { recursive: true });
+            }
             this.db = new Database(resolvedPath);
             this.db.pragma('journal_mode = WAL');
             this.init();

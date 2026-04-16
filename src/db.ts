@@ -18,6 +18,16 @@ export interface CasinoUser {
 
 class CasinoDB {
     private db!: Database.Database;
+    private stmts!: {
+        getUser: Database.Statement;
+        createUser: Database.Statement;
+        deleteUser: Database.Statement;
+        addCoins: Database.Statement;
+        setCoins: Database.Statement;
+        setEmployed: Database.Statement;
+        claimBonus: Database.Statement;
+        recordWork: Database.Statement;
+    };
 
     constructor(dbPath?: string) {
         try {
@@ -27,6 +37,16 @@ class CasinoDB {
             this.db = new Database(resolvedPath);
             this.db.pragma('journal_mode = WAL');
             this.init();
+            this.stmts = {
+                getUser: this.db.prepare('SELECT * FROM users WHERE user_id = ?'),
+                createUser: this.db.prepare('INSERT OR IGNORE INTO users (user_id, name, coins, employed, income, bonus_available, last_worked) VALUES (?, ?, 0, 0, 0, 1, 0)'),
+                deleteUser: this.db.prepare('DELETE FROM users WHERE user_id = ?'),
+                addCoins: this.db.prepare('UPDATE users SET coins = coins + ? WHERE user_id = ?'),
+                setCoins: this.db.prepare('UPDATE users SET coins = ? WHERE user_id = ?'),
+                setEmployed: this.db.prepare('UPDATE users SET employed = 1, income = ? WHERE user_id = ?'),
+                claimBonus: this.db.prepare('UPDATE users SET coins = coins + ?, bonus_available = 0 WHERE user_id = ?'),
+                recordWork: this.db.prepare('UPDATE users SET coins = coins + ?, last_worked = ? WHERE user_id = ?'),
+            };
         } catch (err) {
             console.error('FATAL: Failed to initialize SQLite database.');
             console.error('Ensure the db/ directory is writable and better-sqlite3 is built for this platform.');
@@ -50,7 +70,7 @@ class CasinoDB {
     }
 
     getUser(userId: string): CasinoUser | null {
-        const row = this.db.prepare('SELECT * FROM users WHERE user_id = ?').get(userId) as any;
+        const row = this.stmts.getUser.get(userId) as any;
         if (!row) return null;
         return {
             user_id: row.user_id,
@@ -64,53 +84,35 @@ class CasinoDB {
     }
 
     createUser(userId: string, name: string): boolean {
-        const result = this.db.prepare(
-            'INSERT OR IGNORE INTO users (user_id, name, coins, employed, income, bonus_available, last_worked) VALUES (?, ?, 0, 0, 0, 1, 0)'
-        ).run(userId, name);
-        return result.changes > 0;
+        return this.stmts.createUser.run(userId, name).changes > 0;
     }
 
     deleteUser(userId: string): void {
-        this.db.prepare('DELETE FROM users WHERE user_id = ?').run(userId);
+        this.stmts.deleteUser.run(userId);
     }
 
     addCoins(userId: string, amount: number): void {
-        this.assertUpdated(
-            this.db.prepare('UPDATE users SET coins = coins + ? WHERE user_id = ?').run(amount, userId),
-            userId
-        );
+        this.assertUpdated(this.stmts.addCoins.run(amount, userId), userId);
     }
 
     setCoins(userId: string, amount: number): void {
-        this.assertUpdated(
-            this.db.prepare('UPDATE users SET coins = ? WHERE user_id = ?').run(amount, userId),
-            userId
-        );
+        this.assertUpdated(this.stmts.setCoins.run(amount, userId), userId);
     }
 
     setJob(userId: string, income: number): void {
         const txn = this.db.transaction(() => {
-            this.db.prepare('UPDATE users SET employed = 1, income = ? WHERE user_id = ?').run(income, userId);
-            this.assertUpdated(
-                this.db.prepare('UPDATE users SET coins = coins + ? WHERE user_id = ?').run(income, userId),
-                userId
-            );
+            this.stmts.setEmployed.run(income, userId);
+            this.assertUpdated(this.stmts.addCoins.run(income, userId), userId);
         });
         txn();
     }
 
     claimBonus(userId: string, bonus: number): void {
-        this.assertUpdated(
-            this.db.prepare('UPDATE users SET coins = coins + ?, bonus_available = 0 WHERE user_id = ?').run(bonus, userId),
-            userId
-        );
+        this.assertUpdated(this.stmts.claimBonus.run(bonus, userId), userId);
     }
 
     recordWork(userId: string, earnings: number, timestamp: number): void {
-        this.assertUpdated(
-            this.db.prepare('UPDATE users SET coins = coins + ?, last_worked = ? WHERE user_id = ?').run(earnings, timestamp, userId),
-            userId
-        );
+        this.assertUpdated(this.stmts.recordWork.run(earnings, timestamp, userId), userId);
     }
 
     private assertUpdated(result: Database.RunResult, userId: string): void {

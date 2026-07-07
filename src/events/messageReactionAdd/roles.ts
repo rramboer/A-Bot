@@ -1,10 +1,14 @@
-import { MessageReaction, User } from 'discord.js';
-import { reactionRoleMessage, studentAlumRole, studentRole } from "../../index.js";
+import type { MessageReaction, PartialMessageReaction, PartialUser, User } from 'discord.js';
+import { reactionRoleMessage, studentAlumRole, studentRole } from '../../config.js';
 
-export default async (reaction: MessageReaction, user: User) => {
-    if (reaction.message.id !== reactionRoleMessage) return;
+export default async (reaction: MessageReaction | PartialMessageReaction, user: User | PartialUser) => {
+    if (!reactionRoleMessage || reaction.message.id !== reactionRoleMessage) return;
 
     try {
+        // With partials enabled, the reaction/user may be uncached; fetch the full objects.
+        if (reaction.partial) reaction = await reaction.fetch();
+        if (user.partial) user = await user.fetch();
+
         const { guild } = reaction.message;
         if (!guild) return;
         const member = await guild.members.fetch(user.id);

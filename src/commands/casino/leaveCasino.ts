@@ -1,14 +1,15 @@
-import { db } from "../../db.js";
+import { getDb } from '../../db.js';
 import type { Command } from '../../types.js';
 
 export default {
-    description: "This removes you from the bot casino (cannot be undone!).",
-    callback: async ({ user }) => {
+    description: 'This removes you from the bot casino (cannot be undone!).',
+    callback: ({ user }) => {
         try {
-            const _user = db.getUser(user.id);
-            if (!_user) {
+            const db = getDb();
+            const record = db.getUser(user.id);
+            if (!record) {
                 return {
-                    content: "You're not even in the casino. Why are you trying to leave? Rude..."
+                    content: "You're not even in the casino. Why are you trying to leave? Rude...",
                 };
             }
             console.log(`Removing user ${user.username} from the casino.`);
@@ -18,7 +19,7 @@ export default {
             };
         } catch (e) {
             console.error('Error in leaveCasino command:', e);
-            return { content: "☠️ Oops! Something went wrong on my end." };
+            return { content: '☠️ Oops! Something went wrong on my end.' };
         }
-    }
+    },
 } satisfies Command;

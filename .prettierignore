@@ -1,0 +1,6 @@
+dist/
+db/
+assets/
+coverage/
+.yarn/
+yarn.lock

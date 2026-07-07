@@ -1,11 +1,11 @@
-import { db } from "../../db.js";
+import { getDb } from '../../db.js';
 import type { Command } from '../../types.js';
 
 export default {
-    description: "Join the bot casino! You can remove yourself later with `/leavecasino`.",
-    callback: async ({ user }) => {
+    description: 'Join the bot casino! You can remove yourself later with `/leavecasino`.',
+    callback: ({ user }) => {
         try {
-            if (!db.createUser(user.id, user.username)) {
+            if (!getDb().createUser(user.id, user.username)) {
                 return { content: `You're already in the casino, silly.` };
             }
             console.log(`User ${user.username} added to database.`);
@@ -14,7 +14,7 @@ export default {
             };
         } catch (e) {
             console.error('Error in joinCasino command:', e);
-            return { content: "☠️ Oops! Something went wrong on my end." };
+            return { content: '☠️ Oops! Something went wrong on my end.' };
         }
-    }
+    },
 } satisfies Command;

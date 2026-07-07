@@ -1,34 +1,45 @@
 {
-  "name": "a-bot",
-  "version": "1.0.0",
-  "description": "Discord Bot",
-  "type": "module",
-  "main": "index.js",
-  "dependencies": {
-    "better-sqlite3": "^12.8.0",
-    "discord.js": "^14.19.3"
-  },
-  "scripts": {
-    "dev": "tsx watch --env-file=.env src/index.ts",
-    "build": "rm -rf dist && tsc",
-    "start": "node --env-file=.env dist/index.js",
-    "prod": "yarn build && yarn start",
-    "db:reset": "rm -f db/casino.db && echo 'Database reset.'",
-    "test": "tsx --test test/**/*.test.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rramboer/A-Bot.git"
-  },
-  "engines": {
-    "node": ">=22"
-  },
-  "license": "MIT",
-  "packageManager": "yarn@4.13.0",
-  "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
-    "@types/node": "^25.5.2",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
-  }
+    "name": "a-bot",
+    "version": "1.9.9",
+    "description": "Discord Bot",
+    "private": true,
+    "type": "module",
+    "author": "Ryan Ramboer",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rramboer/A-Bot.git"
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "packageManager": "yarn@4.13.0",
+    "scripts": {
+        "dev": "tsx watch --env-file=.env src/index.ts",
+        "build": "node -e \"fs.rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.build.json",
+        "start": "node --env-file=.env dist/index.js",
+        "prod": "yarn build && yarn start",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "test": "tsx --test \"test/**/*.test.ts\"",
+        "db:reset": "node -e \"for (const f of ['db/casino.db','db/casino.db-wal','db/casino.db-shm']) fs.rmSync(f,{force:true}); console.log('Database reset.')\""
+    },
+    "dependencies": {
+        "better-sqlite3": "^12.8.0",
+        "discord.js": "^14.19.3"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@types/better-sqlite3": "^7.6.13",
+        "@types/node": "^22",
+        "eslint": "^10.6.0",
+        "eslint-config-prettier": "^10.1.8",
+        "prettier": "^3.9.4",
+        "tsx": "^4.21.0",
+        "typescript": "^6.0.2",
+        "typescript-eslint": "^8.63.0"
+    }
 }

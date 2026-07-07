@@ -1,7 +1,24 @@
-.vscode
+# Dependencies
 node_modules
-config.json
-.env
+
+# Yarn 4 (node-modules linker)
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Build output
 dist
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+
+# Local data
 db/
-.yarn/install-state.gz
+.env
+
+# Editors
+.vscode

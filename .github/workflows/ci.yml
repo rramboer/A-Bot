@@ -1,0 +1,33 @@
+name: CI
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+
+jobs:
+    ci:
+        name: Lint, typecheck, test, build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            # Required for Yarn 4 (resolved via the packageManager field).
+            - run: corepack enable
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: yarn
+
+            - run: yarn install --immutable
+
+            - run: yarn lint
+
+            - run: yarn format:check
+
+            - run: yarn typecheck
+
+            - run: yarn test
+
+            - run: yarn build

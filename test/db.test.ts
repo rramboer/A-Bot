@@ -1,6 +1,6 @@
 import { describe, it, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { CasinoDB, type CasinoUser } from '../src/db.js';
+import { CasinoDB } from '../src/db.js';
 
 describe('CasinoDB', () => {
     let db: CasinoDB;
@@ -52,7 +52,9 @@ describe('CasinoDB', () => {
         });
 
         it('does not throw when deleting nonexistent user', () => {
-            assert.doesNotThrow(() => db.deleteUser('999'));
+            assert.doesNotThrow(() => {
+                db.deleteUser('999');
+            });
         });
     });
 
@@ -71,7 +73,9 @@ describe('CasinoDB', () => {
         });
 
         it('throws for nonexistent user', () => {
-            assert.throws(() => db.addCoins('999', 100), /no user found/);
+            assert.throws(() => {
+                db.addCoins('999', 100);
+            }, /no user found/);
         });
     });
 
@@ -84,7 +88,9 @@ describe('CasinoDB', () => {
         });
 
         it('throws for nonexistent user', () => {
-            assert.throws(() => db.setCoins('999', 100), /no user found/);
+            assert.throws(() => {
+                db.setCoins('999', 100);
+            }, /no user found/);
         });
     });
 
@@ -116,7 +122,52 @@ describe('CasinoDB', () => {
         });
 
         it('throws for nonexistent user', () => {
-            assert.throws(() => db.claimBonus('999', 500), /no user found/);
+            assert.throws(() => {
+                db.claimBonus('999', 500);
+            }, /no user found/);
+        });
+    });
+
+    describe('settleBet', () => {
+        it('applies a winning multiplier when the bet is covered', () => {
+            db.createUser('1', 'Alice');
+            db.addCoins('1', 100);
+            assert.equal(db.settleBet('1', 40, 2), true);
+            assert.equal(db.getUser('1')!.coins, 180);
+        });
+
+        it('applies a losing multiplier when the bet is covered', () => {
+            db.createUser('1', 'Alice');
+            db.addCoins('1', 100);
+            assert.equal(db.settleBet('1', 40, -1), true);
+            assert.equal(db.getUser('1')!.coins, 60);
+        });
+
+        it('refuses to settle when the balance no longer covers the bet', () => {
+            db.createUser('1', 'Alice');
+            db.addCoins('1', 30);
+            assert.equal(db.settleBet('1', 40, -1), false);
+            assert.equal(db.getUser('1')!.coins, 30);
+        });
+
+        it('never drives a balance negative', () => {
+            db.createUser('1', 'Alice');
+            db.addCoins('1', 100);
+            // Two concurrent games validated against the same 100-coin balance.
+            assert.equal(db.settleBet('1', 100, -1), true);
+            assert.equal(db.settleBet('1', 100, -1), false);
+            assert.equal(db.getUser('1')!.coins, 0);
+        });
+
+        it('returns false for a nonexistent user', () => {
+            assert.equal(db.settleBet('999', 10, 1), false);
+        });
+
+        it('treats a zero multiplier as a covered no-op', () => {
+            db.createUser('1', 'Alice');
+            db.addCoins('1', 50);
+            assert.equal(db.settleBet('1', 50, 0), true);
+            assert.equal(db.getUser('1')!.coins, 50);
         });
     });
 
@@ -131,7 +182,9 @@ describe('CasinoDB', () => {
         });
 
         it('throws for nonexistent user', () => {
-            assert.throws(() => db.recordWork('999', 75, Date.now()), /no user found/);
+            assert.throws(() => {
+                db.recordWork('999', 75, Date.now());
+            }, /no user found/);
         });
     });
 });

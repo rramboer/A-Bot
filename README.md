@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/rramboer/A-Bot/actions/workflows/ci.yml/badge.svg)](https://github.com/rramboer/A-Bot/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D24-brightgreen)](https://nodejs.org/)
 [![discord.js](https://img.shields.io/badge/discord.js-v14-5865F2)](https://discord.js.org/)
 
 A multi-purpose Discord bot built with inspiration from the University of Michigan EECS 370 course Discord server. Adapted from [zombbblob](https://github.com/ToafdaLoaf/zombbblob).
@@ -21,7 +21,7 @@ A multi-purpose Discord bot built with inspiration from the University of Michig
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) >= 22 (see `.nvmrc`)
+- [Node.js](https://nodejs.org/) >= 24 (see `.nvmrc`)
 - [Yarn](https://yarnpkg.com/) 4.x (via `corepack enable`)
 
 ### Discord setup

@@ -4,7 +4,7 @@ Thanks for your interest in contributing!
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) >= 22 (see `.nvmrc`)
+- [Node.js](https://nodejs.org/) >= 24 (see `.nvmrc`)
 - Yarn 4 — run `corepack enable` once and the correct version is picked up from `package.json`
 
 ## Getting started

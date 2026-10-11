@@ -9,6 +9,13 @@ updates:
               update-types:
                   - minor
                   - patch
+      ignore:
+          # typescript-eslint does not support TypeScript 7 yet (peer range is <6.1).
+          - dependency-name: typescript
+            update-types: ['version-update:semver-major']
+          # Keep Node types in step with the Node major in .nvmrc.
+          - dependency-name: '@types/node'
+            update-types: ['version-update:semver-major']
 
     - package-ecosystem: github-actions
       directory: /

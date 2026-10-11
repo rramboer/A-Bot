@@ -1,13 +1,14 @@
 // @ts-check
 import eslint from '@eslint/js';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import prettierConfig from 'eslint-config-prettier';
 
-export default tseslint.config(
-    { ignores: ['dist/', 'db/', 'assets/', 'coverage/', '.yarn/'] },
+export default defineConfig(
+    globalIgnores(['dist/', 'db/', 'assets/', 'coverage/', '.yarn/']),
     eslint.configs.recommended,
-    ...tseslint.configs.strictTypeChecked,
-    ...tseslint.configs.stylisticTypeChecked,
+    tseslint.configs.strictTypeChecked,
+    tseslint.configs.stylisticTypeChecked,
     {
         languageOptions: {
             parserOptions: {
